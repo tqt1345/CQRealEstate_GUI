@@ -9,15 +9,16 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="182.0" layoutY="-1.0" prefHeight="371.0" prefWidth="235.0" spacing="25.0">
+            <VBox alignment="TOP_CENTER" layoutX="182.0" layoutY="18.0" prefHeight="352.0" prefWidth="235.0" spacing="15.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#switchToAddProperty" prefWidth="125.0" text="Add Property" />
                   <Button mnemonicParsing="false" onAction="#switchToAddClient" prefWidth="125.0" text="Add Client" />
                   <Button mnemonicParsing="false" onAction="#switchToAddSale" prefWidth="125.0" text="Add Sale" />
-                  <Button mnemonicParsing="false" onAction="#switchToDisplayRecords" text="Display Records" />
+                  <Button mnemonicParsing="false" onAction="#switchToDisplayRecords" prefWidth="125.0" text="Display Records" />
                   <Button mnemonicParsing="false" onAction="#switchToSearchSale" prefWidth="125.0" text="Search Sale" />
                   <Button mnemonicParsing="false" onAction="#switchToCalculateAverage" prefWidth="125.0" text="Calculate Average" />
-                  <Button mnemonicParsing="false" onAction="#handleClearDataButton" text="Clear Data" />
+                  <Button mnemonicParsing="false" onAction="#handleClearDataButton" prefWidth="125.0" text="Clear Data" />
+                  <Button mnemonicParsing="false" onAction="#handleExitButton" prefWidth="125.0" text="Exit" />
                </children>
             </VBox>
          </children></AnchorPane>

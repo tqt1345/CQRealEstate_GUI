@@ -30,33 +30,22 @@ public class AddPropertyController implements Initializable {
     }    
 
     // Text Fields for Land objects
-    @FXML
-    private TextField txtLotNumberLand ;
-    @FXML
-    private TextField txtAddressLand;
-    @FXML
-    private TextField txtLandAreaLand;
+    @FXML private TextField txtLotNumberLand ;
+    @FXML private TextField txtAddressLand;
+    @FXML private TextField txtLandAreaLand;
 
     // Text fields for HouseAndLand objects
-    @FXML
-    private TextField txtLotNumberHouse;
-    @FXML
-    private TextField txtAddressHouse;
-    @FXML
-    private TextField txtLandAreaHouse;
-    @FXML
-    private TextField txtConstructedAreaHouse;
-    @FXML
-    private TextField txtBedroomsHouse;
-    @FXML
-    private TextField txtToiletsHouse;
+    @FXML private TextField txtLotNumberHouse;
+    @FXML private TextField txtAddressHouse;
+    @FXML private TextField txtLandAreaHouse;
+    @FXML private TextField txtConstructedAreaHouse;
+    @FXML private TextField txtBedroomsHouse;
+    @FXML private TextField txtToiletsHouse;
 
     // Buttons
-    @FXML
-    private Button submitButton;
+    @FXML private Button submitButton;
 
-    @FXML
-    private void handleLandSubmitButton (ActionEvent event) {
+    @FXML private void handleLandSubmitButton (ActionEvent event) {
         try {
             if (isValidInput("land")) { // If all input is valid, will run.
                 // Make land object from input
@@ -76,8 +65,7 @@ public class AddPropertyController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleHouseAndLandSubmitButton (ActionEvent event) {
+    @FXML private void handleHouseAndLandSubmitButton (ActionEvent event) {
         try {
             if (isValidInput("houseAndLand")) {
                 // Make house and land object from input
@@ -167,8 +155,7 @@ public class AddPropertyController implements Initializable {
         }
         return true;
     }
-    @FXML
-    private void clearFields() {
+    @FXML private void clearFields() {
         // Clearing Land fields
         txtLotNumberLand.clear();
         txtAddressLand.clear();
@@ -182,8 +169,7 @@ public class AddPropertyController implements Initializable {
         txtBedroomsHouse.clear();
         txtToiletsHouse.clear();
     }
-    @FXML
-    private void switchToMainMenu() throws Exception {
+    @FXML private void switchToMainMenu() throws Exception {
         try {
             App.setRoot("mainMenu");
         } catch (Exception e) {

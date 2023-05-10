@@ -23,7 +23,7 @@ public class App extends Application {
         DataHandler.loadData();
 
         // Set GUI elements
-        scene = new Scene(loadFXML("mainMenu"), 640, 480);
+        scene = new Scene(loadFXML("mainMenu"));
         stage.setScene(scene);
         stage.show();
 
@@ -43,7 +43,8 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public void exit() {
+    // Exit program
+    public static void exit() {
         DataHandler.saveData();
         Platform.exit();
     }

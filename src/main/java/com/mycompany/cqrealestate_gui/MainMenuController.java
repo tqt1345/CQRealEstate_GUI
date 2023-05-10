@@ -24,15 +24,10 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         return;
-    }    
-
-    public void clearFields() {
-     // TODO
     }
 
-    public void switchToAddProperty() {
+    @FXML private void switchToAddProperty() {
         try {
             App.setRoot("addProperty");
         } catch (Exception e) {
@@ -40,7 +35,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToAddClient() {
+    @FXML private void switchToAddClient() {
         try {
             App.setRoot("addClient");
         } catch (Exception e) {
@@ -48,7 +43,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToAddSale() {
+    @FXML private void switchToAddSale() {
         try {
             App.setRoot("addSale");
         } catch (Exception e) {
@@ -56,7 +51,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToDisplayRecords() {
+    @FXML private void switchToDisplayRecords() {
         try {
             App.setRoot("displayRecords");
         } catch (Exception e) {
@@ -64,7 +59,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToSearchSale() {
+    @FXML private void switchToSearchSale() {
         try {
             App.setRoot("searchSale");
         } catch (Exception e) {
@@ -72,7 +67,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToCalculateAverage() throws Exception {
+    @FXML private void switchToCalculateAverage() throws Exception {
         try {
             App.setRoot("calculateAverage");
         } catch (Exception e) {
@@ -89,6 +84,10 @@ public class MainMenuController implements Initializable {
             System.out.println(e);
             //TODO joptionpane
         }
+    }
+
+    @FXML private void handleExitButton() {
+        App.exit();
     }
 
 }

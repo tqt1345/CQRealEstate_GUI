@@ -52,6 +52,7 @@ public class AddPropertyController implements Initializable {
         txtLandArea.clear();
     }
 
+    
     @FXML
     private void handleLandSubmitButton (ActionEvent event) {
 

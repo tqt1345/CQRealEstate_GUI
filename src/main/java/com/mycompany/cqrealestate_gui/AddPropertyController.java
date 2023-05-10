@@ -107,22 +107,27 @@ public class AddPropertyController implements Initializable {
     }
 
     private boolean isValidInput (String type) {
-        String errorMessage = "";
+        StringBuilder errorMessage = new StringBuilder();
         switch (type) {
             case "land":
                 if (txtLotNumberLand.getText().isEmpty() ||
                         txtAddressLand.getText().isEmpty() ||
                         txtLandAreaLand.getText().isEmpty()) {
-                    errorMessage += "All fields must be filled\n";
+                    errorMessage.append("All fields must be filled\n");
+                }
+                for (Land land : DataHandler.landList) {
+                    if (land.getPropertyId() == Integer.parseInt(txtLandId.getText())) {
+                        errorMessage.append("Land ID already exists\n");
+                    }
                 }
                 if (!Utils.Validator.isInteger(txtLotNumberLand.getText())) {
-                    errorMessage += "Lot number must be an integer\n";
+                    errorMessage.append("Lot number must be an integer\n");
                 }
                 if (!Utils.Validator.isDouble(txtLandAreaLand.getText())) {
-                    errorMessage += "Land area must be a double\n";
+                    errorMessage.append("Land area must be a double\n");
                 }
-                if (!errorMessage.isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage);
+                if (errorMessage.length() > 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
                     alert.showAndWait();
                     return false;
                 }
@@ -134,25 +139,30 @@ public class AddPropertyController implements Initializable {
                         txtConstructedAreaHouse.getText().isEmpty() ||
                         txtBedroomsHouse.getText().isEmpty() ||
                         txtToiletsHouse.getText().isEmpty()) {
-                    errorMessage += "All fields must be filled\n";
+                    errorMessage.append("All fields must be filled\n");
+                }
+                for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
+                    if (houseAndLand.getPropertyId() == Integer.parseInt(txtHouseAndLandId.getText())) {
+                        errorMessage.append("HouseAndLand ID already exists\n");
+                    }
                 }
                 if (!Utils.Validator.isInteger(txtLotNumberHouse.getText())) {
-                    errorMessage += "Lot number must be an integer\n";
+                    errorMessage.append("Lot number must be an integer\n");
                 }
                 if (!Utils.Validator.isDouble(txtLandAreaHouse.getText())) {
-                    errorMessage += "Land area must be a double\n";
+                    errorMessage.append("Land area must be a double\n");
                 }
                 if (!Utils.Validator.isDouble(txtConstructedAreaHouse.getText())) {
-                    errorMessage += "Constructed area must be a double\n";
+                    errorMessage.append("Constructed area must be a double\n");
                 }
                 if (!Utils.Validator.isInteger(txtBedroomsHouse.getText())) {
-                    errorMessage += "Bedrooms must be an integer\n";
+                    errorMessage.append("Bedrooms must be an integer\n");
                 }
                 if (!Utils.Validator.isInteger(txtToiletsHouse.getText())) {
-                    errorMessage += "Bathrooms must be an integer\n";
+                    errorMessage.append("Bathrooms must be an integer\n");
                 }
-                if (!errorMessage.isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage);
+                if (errorMessage.length() > 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
                     alert.showAndWait();
                     return false;
                 }
@@ -162,11 +172,13 @@ public class AddPropertyController implements Initializable {
     }
     @FXML private void clearFields() {
         // Clearing Land fields
+        txtLandId.clear();
         txtLotNumberLand.clear();
         txtAddressLand.clear();
         txtLandAreaLand.clear();
 
         // Clearing House and land fields
+        txtHouseAndLandId.clear();
         txtLotNumberHouse.clear();
         txtAddressHouse.clear();
         txtLandAreaHouse.clear();

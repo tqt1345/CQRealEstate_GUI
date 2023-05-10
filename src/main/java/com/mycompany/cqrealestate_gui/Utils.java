@@ -3,6 +3,7 @@ package com.mycompany.cqrealestate_gui;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Utils {
     public static class Text {

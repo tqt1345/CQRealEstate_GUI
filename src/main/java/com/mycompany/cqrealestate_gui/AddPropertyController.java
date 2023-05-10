@@ -72,9 +72,21 @@ public class AddPropertyController implements Initializable {
 
     @FXML
     private void handleHouseAndLandSubmitButton (ActionEvent event) {
-        clearFields();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
-        alert.showAndWait();
+        try {
+            int lotNumber = Integer.parseInt(txtLotNumber.getText());
+            String address = txtAddress.getText();
+            double landArea = Double.parseDouble(txtLandArea.getText());
+            double constructedArea = Double.parseDouble(txtConstructedArea.getText());
+            int bedrooms = Integer.parseInt(txtBedrooms.getText());
+            int bathrooms = Integer.parseInt(txtBathrooms.getText());
+
+            clearFields();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
+            alert.showAndWait();
+        } catch (Exception e) { // Error message if incorrect input
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
+            alert.showAndWait();
+        }
     }
 
     private void writeToFile() {

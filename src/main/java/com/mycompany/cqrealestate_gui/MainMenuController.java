@@ -21,6 +21,51 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        return;
     }    
-    
+
+    public void clearFields() {
+     // TODO
+    }
+
+    public void switchToAddProperty() throws Exception {
+        try {
+            App.setRoot("addProperty");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void switchToAddClient() throws Exception {
+        try {
+            App.setRoot("addClient");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void switchToAddSale() throws Exception {
+        try {
+            App.setRoot("addSale");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void switchToSearchSale() throws Exception {
+        try {
+            App.setRoot("searchSale");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void switchToCalculateAverage() throws Exception {
+        try {
+            App.setRoot("calculateAverage");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

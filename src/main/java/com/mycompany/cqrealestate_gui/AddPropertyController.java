@@ -45,7 +45,8 @@ public class AddPropertyController implements Initializable {
     // Buttons
     @FXML private Button submitButton;
 
-    @FXML private void handleLandSubmitButton (ActionEvent event) {
+    @FXML
+    private void handleLandSubmitButton (ActionEvent event) {
         try {
             if (isValidInput("land")) { // If all input is valid, will run.
                 // Make land object from input

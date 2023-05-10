@@ -7,6 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Add Property" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cqrealestate_gui.AddPropertyController">
   <content>
@@ -18,16 +21,31 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205.0" prefWidth="259.0">
                            <children>
-                              <Button layoutX="217.0" layoutY="271.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
-                              <Button layoutX="60.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLandSubmitButton" text="Submit" />
-                              <TextField fx:id="txtLotNumberLand" layoutX="163.0" layoutY="52.0" promptText="Enter lot number" />
-                              <TextField fx:id="txtAddressLand" layoutX="163.0" layoutY="117.0" promptText="Enter address" />
-                              <Label layoutX="54.0" layoutY="56.0" text="Lot Number" />
-                              <Label layoutX="65.0" layoutY="112.0" text="Address" />
-                              <TextField fx:id="txtLandAreaLand" layoutX="163.0" layoutY="168.0" promptText="Enter land area" />
-                              <Label layoutX="59.0" layoutY="172.0" text="Land Area" />
-                              <Label layoutX="65.0" layoutY="23.0" text="ID" />
-                              <TextField layoutX="163.0" layoutY="11.0" promptText="Enter land ID" />
+                              <GridPane layoutX="8.0" layoutY="13.0" prefHeight="314.0" prefWidth="267.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="ID" />
+                                    <TextField promptText="Enter ID" GridPane.columnIndex="1" />
+                                    <Label text="Lot Number" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtLotNumberLand" promptText="Enter lot number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Address" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtAddressLand" promptText="Enter address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Land Area" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtLandAreaLand" promptText="Enter land area" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" onAction="#handleLandSubmitButton" text="Submit" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
@@ -36,22 +54,39 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="205.0" prefWidth="259.0">
                            <children>
-                              <Button layoutX="217.0" layoutY="271.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
-                              <Button layoutX="60.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleHouseAndLandSubmitButton" text="Submit" />
-                              <TextField fx:id="txtLotNumberHouse" layoutX="163.0" layoutY="20.0" promptText="Enter lot number" />
-                              <TextField fx:id="txtAddressHouse" layoutX="163.0" layoutY="74.0" promptText="Enter address" />
-                              <Label layoutX="54.0" layoutY="24.0" text="Lot Number" />
-                              <Label layoutX="65.0" layoutY="69.0" text="Address" />
-                              <TextField fx:id="txtLandAreaHouse" layoutX="163.0" layoutY="122.0" promptText="Enter land area" />
-                              <Label layoutX="60.0" layoutY="117.0" text="Land Area" />
-                              <Label layoutX="41.0" layoutY="163.0" text="Constructed Area" />
-                              <TextField fx:id="txtConstructedAreaHouse" layoutX="163.0" layoutY="168.0" promptText="Enter constructed area" />
-                              <Label layoutX="371.0" layoutY="24.0" text="Bedrooms" />
-                              <Label layoutX="371.0" layoutY="78.0" text="Toilets" />
-                              <TextField fx:id="txtBedroomsHouse" layoutX="437.0" layoutY="20.0" promptText="Enter number of bedrooms" />
-                              <TextField fx:id="txtToiletsHouse" layoutX="437.0" layoutY="74.0" promptText="Enter number of toilets" />
-                              <Label layoutX="383.0" layoutY="147.0" text="ID" />
-                              <TextField layoutX="425.0" layoutY="143.0" promptText="Enter HouseAndLand ID" />
+                              <GridPane layoutX="14.0" layoutY="11.0" prefHeight="322.0" prefWidth="498.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="126.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="127.0" minWidth="10.0" prefWidth="127.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Lot Number" GridPane.rowIndex="1" />
+                                    <Label text="Address" GridPane.rowIndex="2" />
+                                    <Label text="Land Area" GridPane.rowIndex="3" />
+                                    <Label text="Constructed Area" GridPane.columnIndex="2" />
+                                    <TextField fx:id="txtLotNumberHouse" prefHeight="25.0" prefWidth="106.0" promptText="Enter lot number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtAddressHouse" promptText="Enter address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtLandAreaHouse" promptText="Enter land area" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtConstructedAreaHouse" promptText="Enter constructed area" GridPane.columnIndex="3" />
+                                    <Button mnemonicParsing="false" onAction="#handleHouseAndLandSubmitButton" text="Submit" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Bedrooms" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label text="Toilets" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="22.0" text="ID" />
+                                    <TextField promptText="Enter ID" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtToiletsHouse" promptText="Enter number of toilets" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtBedroomsHouse" promptText="Enter number of bedrooms" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                      </content>

@@ -6,6 +6,8 @@ package com.mycompany.cqrealestate_gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -22,7 +24,7 @@ public class AddSaleController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    public void switchToMainMenu() throws Exception {
+    @FXML private void switchToMainMenu() {
         try {
             App.setRoot("mainMenu");
         } catch (Exception e) {

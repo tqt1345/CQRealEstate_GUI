@@ -1,5 +1,7 @@
 package com.mycompany.cqrealestate_gui;
 
+import java.io.Serializable;
+
 public class HouseAndLand extends Land {
 
     // HouseAndLand attributes

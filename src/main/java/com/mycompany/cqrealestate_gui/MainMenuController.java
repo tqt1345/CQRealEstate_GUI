@@ -6,7 +6,11 @@ package com.mycompany.cqrealestate_gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -73,6 +77,17 @@ public class MainMenuController implements Initializable {
             App.setRoot("calculateAverage");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML private void handleClearDataButton(ActionEvent event) {
+        try {
+            DataHandler.clearData();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully cleared data");
+            alert.showAndWait();
+        } catch(Exception e) {
+            System.out.println(e);
+            //TODO joptionpane
         }
     }
 

@@ -1,6 +1,8 @@
 package com.mycompany.cqrealestate_gui;
 
-public class Sale {
+import java.io.Serializable;
+
+public class Sale implements Serializable {
 
     // Sale attributes
     private int saleID;

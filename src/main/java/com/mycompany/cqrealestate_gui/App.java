@@ -1,6 +1,7 @@
 package com.mycompany.cqrealestate_gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,7 +29,7 @@ public class App extends Application {
 
         // Saves all data when program is closed
         stage.setOnCloseRequest(windowEvent -> {
-            DataHandler.saveData();
+            exit();
         });
     }
 
@@ -42,6 +43,10 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public void exit() {
+        DataHandler.saveData();
+        Platform.exit();
+    }
     public static void main(String[] args) {
         launch();
     }

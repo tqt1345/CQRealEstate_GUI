@@ -1,6 +1,8 @@
 package com.mycompany.cqrealestate_gui;
 
-public abstract class Client {
+import java.io.Serializable;
+
+public abstract class Client implements Serializable {
 
     // Client attributes
     private int clientID;

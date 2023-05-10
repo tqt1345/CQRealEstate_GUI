@@ -1,6 +1,8 @@
 package com.mycompany.cqrealestate_gui;
 
-public class Land {
+import java.io.Serializable;
+
+public class Land implements Serializable {
 
     // Land attributes
     private int propertyId;

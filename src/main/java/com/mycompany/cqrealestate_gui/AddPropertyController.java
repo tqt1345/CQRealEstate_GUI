@@ -29,40 +29,61 @@ public class AddPropertyController implements Initializable {
         // TODO
     }    
 
-    // Text Fields
+    // Text Fields for Land objects
     @FXML
-    private TextField txtLotNumber;
+    private TextField txtLotNumberLand ;
     @FXML
-    private TextField txtAddress;
+    private TextField txtAddressLand;
     @FXML
-    private TextField txtLandArea;
+    private TextField txtLandAreaLand;
+
+    // Text fields for HouseAndLand objects
     @FXML
-    private TextField txtConstructedArea;
+    private TextField txtLotNumberHouse;
     @FXML
-    private TextField txtBedrooms;
+    private TextField txtAddressHouse;
     @FXML
-    private TextField txtBathrooms;
+    private TextField txtLandAreaHouse;
+    @FXML
+    private TextField txtConstructedAreaHouse;
+    @FXML
+    private TextField txtBedroomsHouse;
+    @FXML
+    private TextField txtToiletsHouse;
+
+    // Buttons
     @FXML
     private Button submitButton;
 
     @FXML
     private void clearFields() {
-        txtLotNumber.clear();
-        txtAddress.clear();
-        txtLandArea.clear();
+        // Clearing Land fields
+        txtLotNumberLand.clear();
+        txtAddressLand.clear();
+        txtLandAreaLand.clear();
+
+        // Clearing House and land fields
+        txtLotNumberHouse.clear();
+        txtAddressHouse.clear();
+        txtLandAreaHouse.clear();
+        txtConstructedAreaHouse.clear();
+        txtBedroomsHouse.clear();
+        txtToiletsHouse.clear();
     }
 
     private boolean isValidInput (String type) {
         String errorMessage = "";
         switch (type) {
             case "land":
-                if (txtLotNumber.getText().isEmpty() || txtAddress.getText().isEmpty() || txtLandArea.getText().isEmpty()) {
+                if (txtLotNumberLand.getText().isEmpty() ||
+                        txtAddressLand.getText().isEmpty() ||
+                        txtLandAreaLand.getText().isEmpty()) {
                     errorMessage += "All fields must be filled\n";
                 }
-                if (!Utils.Validator.isInteger(txtLotNumber.getText())) {
+                if (!Utils.Validator.isInteger(txtLotNumberLand.getText())) {
                     errorMessage += "Lot number must be an integer\n";
                 }
-                if (!Utils.Validator.isDouble(txtLandArea.getText())) {
+                if (!Utils.Validator.isDouble(txtLandAreaLand.getText())) {
                     errorMessage += "Land area must be a double\n";
                 }
                 if (!errorMessage.isEmpty()) {
@@ -70,23 +91,29 @@ public class AddPropertyController implements Initializable {
                     alert.showAndWait();
                     return false;
                 }
+                break;
             case "houseAndLand":
-                if (txtLotNumber.getText().isEmpty() || txtAddress.getText().isEmpty() || txtLandArea.getText().isEmpty() || txtConstructedArea.getText().isEmpty() || txtBedrooms.getText().isEmpty() || txtBathrooms.getText().isEmpty()) {
+                if (txtLotNumberHouse.getText().isEmpty() ||
+                        txtAddressHouse.getText().isEmpty() ||
+                        txtLandAreaHouse.getText().isEmpty() ||
+                        txtConstructedAreaHouse.getText().isEmpty() ||
+                        txtBedroomsHouse.getText().isEmpty() ||
+                        txtToiletsHouse.getText().isEmpty()) {
                     errorMessage += "All fields must be filled\n";
                 }
-                if (!Utils.Validator.isInteger(txtLotNumber.getText())) {
+                if (!Utils.Validator.isInteger(txtLotNumberHouse.getText())) {
                     errorMessage += "Lot number must be an integer\n";
                 }
-                if (!Utils.Validator.isDouble(txtLandArea.getText())) {
+                if (!Utils.Validator.isDouble(txtLandAreaHouse.getText())) {
                     errorMessage += "Land area must be a double\n";
                 }
-                if (!Utils.Validator.isDouble(txtConstructedArea.getText())) {
+                if (!Utils.Validator.isDouble(txtConstructedAreaHouse.getText())) {
                     errorMessage += "Constructed area must be a double\n";
                 }
-                if (!Utils.Validator.isInteger(txtBedrooms.getText())) {
+                if (!Utils.Validator.isInteger(txtBedroomsHouse.getText())) {
                     errorMessage += "Bedrooms must be an integer\n";
                 }
-                if (!Utils.Validator.isInteger(txtBathrooms.getText())) {
+                if (!Utils.Validator.isInteger(txtToiletsHouse.getText())) {
                     errorMessage += "Bathrooms must be an integer\n";
                 }
                 if (!errorMessage.isEmpty()) {
@@ -94,16 +121,21 @@ public class AddPropertyController implements Initializable {
                     alert.showAndWait();
                     return false;
                 }
+                break;
         }
         return true;
     }
 
     @FXML
     private void handleLandSubmitButton (ActionEvent event) {
-
-        if (isValidInput("land")) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
-            alert.showAndWait();
+        try {
+            if (isValidInput("land")) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
+                alert.showAndWait();
+                clearFields();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -112,6 +144,7 @@ public class AddPropertyController implements Initializable {
         if (isValidInput("houseAndLand")) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
             alert.showAndWait();
+            clearFields();
         }
     }
 

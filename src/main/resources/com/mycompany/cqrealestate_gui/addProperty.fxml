@@ -20,11 +20,11 @@
                            <children>
                               <Button layoutX="217.0" layoutY="271.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
                               <Button layoutX="60.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleLandSubmitButton" text="Submit" />
-                              <TextField fx:id="txtLotNumber" layoutX="163.0" layoutY="52.0" promptText="Enter lot number" />
-                              <TextField fx:id="txtAddress" layoutX="163.0" layoutY="117.0" promptText="Enter address" />
+                              <TextField fx:id="txtLotNumberLand" layoutX="163.0" layoutY="52.0" promptText="Enter lot number" />
+                              <TextField fx:id="txtAddressLand" layoutX="163.0" layoutY="117.0" promptText="Enter address" />
                               <Label layoutX="54.0" layoutY="56.0" text="Lot Number" />
                               <Label layoutX="65.0" layoutY="112.0" text="Address" />
-                              <TextField fx:id="txtLandArea" layoutX="163.0" layoutY="168.0" promptText="Enter land area" />
+                              <TextField fx:id="txtLandAreaLand" layoutX="163.0" layoutY="168.0" promptText="Enter land area" />
                               <Label layoutX="59.0" layoutY="172.0" text="Land Area" />
                            </children>
                         </AnchorPane>
@@ -36,18 +36,18 @@
                            <children>
                               <Button layoutX="217.0" layoutY="271.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
                               <Button layoutX="60.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleHouseAndLandSubmitButton" text="Submit" />
-                              <TextField layoutX="163.0" layoutY="20.0" promptText="Enter lot number" />
-                              <TextField layoutX="163.0" layoutY="74.0" promptText="Enter address" />
+                              <TextField fx:id="txtLotNumberHouse" layoutX="163.0" layoutY="20.0" promptText="Enter lot number" />
+                              <TextField fx:id="txtAddressHouse" layoutX="163.0" layoutY="74.0" promptText="Enter address" />
                               <Label layoutX="54.0" layoutY="24.0" text="Lot Number" />
                               <Label layoutX="65.0" layoutY="69.0" text="Address" />
-                              <TextField layoutX="163.0" layoutY="122.0" promptText="Enter land area" />
+                              <TextField fx:id="txtLandAreaHouse" layoutX="163.0" layoutY="122.0" promptText="Enter land area" />
                               <Label layoutX="60.0" layoutY="117.0" text="Land Area" />
                               <Label layoutX="41.0" layoutY="163.0" text="Constructed Area" />
-                              <TextField layoutX="163.0" layoutY="168.0" promptText="Enter constructed area" />
+                              <TextField fx:id="txtConstructedAreaHouse" layoutX="163.0" layoutY="168.0" promptText="Enter constructed area" />
                               <Label layoutX="371.0" layoutY="24.0" text="Bedrooms" />
                               <Label layoutX="371.0" layoutY="78.0" text="Toilets" />
-                              <TextField layoutX="437.0" layoutY="20.0" promptText="Enter number of bedrooms" />
-                              <TextField layoutX="437.0" layoutY="74.0" promptText="Enter number of toilets" />
+                              <TextField fx:id="txtBedroomsHouse" layoutX="437.0" layoutY="20.0" promptText="Enter number of bedrooms" />
+                              <TextField fx:id="txtToiletsHouse" layoutX="437.0" layoutY="74.0" promptText="Enter number of toilets" />
                            </children>
                         </AnchorPane>
                      </content>

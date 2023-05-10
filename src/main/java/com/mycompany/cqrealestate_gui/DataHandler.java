@@ -1,6 +1,8 @@
 package com.mycompany.cqrealestate_gui;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -16,7 +18,16 @@ public class DataHandler {
     // Saves all object arrays into a file via serialization
     public static void saveData() {
         try {
-            // TODO
+            FileOutputStream file = new FileOutputStream("ObjectData.ser");
+            ObjectOutputStream output = new ObjectOutputStream(file);
+
+            output.writeObject(landList);
+            output.writeObject(houseAndLandList);
+            output.writeObject(buyerList);
+            output.writeObject(sellerList);
+            output.writeObject(saleList);
+
+            output.close();
         } catch (Exception e) {
             // TODO JOptionPane error message
             System.out.println(e.getMessage());
@@ -26,7 +37,16 @@ public class DataHandler {
     // Loads all object arrays from a file via deserialization
     public static void loadData() {
         try {
-            // TODO
+            FileInputStream file = new FileInputStream("ObjectData.ser");
+            ObjectInputStream input = new ObjectInputStream(file);
+
+            landList = (ArrayList<Land>) input.readObject();
+            houseAndLandList = (ArrayList<HouseAndLand>) input.readObject();
+            buyerList = (ArrayList<Buyer>) input.readObject();
+            sellerList = (ArrayList<Seller>) input.readObject();
+            saleList = (ArrayList<Sale>) input.readObject();
+
+            input.close();
         } catch (Exception e) {
             // TODO JOptionPane error message
             System.out.println(e.getMessage());

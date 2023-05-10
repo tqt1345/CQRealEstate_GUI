@@ -52,40 +52,65 @@ public class AddPropertyController implements Initializable {
         txtLandArea.clear();
     }
 
-    
+    private boolean isValidInput (String type) {
+        String errorMessage = "";
+        switch (type) {
+            case "land":
+                if (txtLotNumber.getText().isEmpty() || txtAddress.getText().isEmpty() || txtLandArea.getText().isEmpty()) {
+                    errorMessage += "All fields must be filled\n";
+                }
+                if (!Utils.Validator.isInteger(txtLotNumber.getText())) {
+                    errorMessage += "Lot number must be an integer\n";
+                }
+                if (!Utils.Validator.isDouble(txtLandArea.getText())) {
+                    errorMessage += "Land area must be a double\n";
+                }
+                if (!errorMessage.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage);
+                    alert.showAndWait();
+                    return false;
+                }
+            case "houseAndLand":
+                if (txtLotNumber.getText().isEmpty() || txtAddress.getText().isEmpty() || txtLandArea.getText().isEmpty() || txtConstructedArea.getText().isEmpty() || txtBedrooms.getText().isEmpty() || txtBathrooms.getText().isEmpty()) {
+                    errorMessage += "All fields must be filled\n";
+                }
+                if (!Utils.Validator.isInteger(txtLotNumber.getText())) {
+                    errorMessage += "Lot number must be an integer\n";
+                }
+                if (!Utils.Validator.isDouble(txtLandArea.getText())) {
+                    errorMessage += "Land area must be a double\n";
+                }
+                if (!Utils.Validator.isDouble(txtConstructedArea.getText())) {
+                    errorMessage += "Constructed area must be a double\n";
+                }
+                if (!Utils.Validator.isInteger(txtBedrooms.getText())) {
+                    errorMessage += "Bedrooms must be an integer\n";
+                }
+                if (!Utils.Validator.isInteger(txtBathrooms.getText())) {
+                    errorMessage += "Bathrooms must be an integer\n";
+                }
+                if (!errorMessage.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage);
+                    alert.showAndWait();
+                    return false;
+                }
+        }
+        return true;
+    }
+
     @FXML
     private void handleLandSubmitButton (ActionEvent event) {
 
-        // Check input
-        try {
-            int lotNumber = Integer.parseInt(txtLotNumber.getText());
-            String address = txtAddress.getText();
-            double landArea = Double.parseDouble(txtLandArea.getText());
-
-            clearFields();
+        if (isValidInput("land")) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
-            alert.showAndWait();
-        } catch (Exception e) { // Error message if incorrect input
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
             alert.showAndWait();
         }
     }
 
     @FXML
     private void handleHouseAndLandSubmitButton (ActionEvent event) {
-        try {
-            int lotNumber = Integer.parseInt(txtLotNumber.getText());
-            String address = txtAddress.getText();
-            double landArea = Double.parseDouble(txtLandArea.getText());
-            double constructedArea = Double.parseDouble(txtConstructedArea.getText());
-            int bedrooms = Integer.parseInt(txtBedrooms.getText());
-            int bathrooms = Integer.parseInt(txtBathrooms.getText());
-
-            clearFields();
+        if (isValidInput("houseAndLand")) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
-            alert.showAndWait();
-        } catch (Exception e) { // Error message if incorrect input
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid input");
             alert.showAndWait();
         }
     }

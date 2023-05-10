@@ -29,12 +29,14 @@ public class AddClientController implements Initializable {
     }
 
     // Text Fields for Buyer objects
+    @FXML private TextField txtBuyerID;
     @FXML private TextField txtBuyerFirstName;
     @FXML private TextField txtBuyerLastName;
     @FXML private TextField txtBuyerAddress;
     @FXML private TextField txtBuyerPhoneNumber;
 
     // Text Fields for Seller objects
+    @FXML private TextField txtSellerID;
     @FXML private TextField txtSellerFirstName;
     @FXML private TextField txtSellerLastName;
     @FXML private TextField txtSellerAddress;
@@ -75,23 +77,26 @@ public class AddClientController implements Initializable {
     }
 
     private Buyer makeBuyer() {
+
+        int buyerID = Integer.parseInt(txtBuyerID.getText());
         String firstName = txtBuyerFirstName.getText();
         String lastName = txtBuyerLastName.getText();
         String address = txtBuyerAddress.getText();
         String phoneNumber = txtBuyerPhoneNumber.getText();
 
-        return new Buyer(firstName, lastName, address, phoneNumber);
+        return new Buyer(buyerID,firstName, lastName, address, phoneNumber);
     }
     private Seller makeSeller() {
+        int sellerID = Integer.parseInt(txtSellerID.getText());
         String firstName = txtSellerFirstName.getText();
         String lastName = txtSellerLastName.getText();
         String address = txtSellerAddress.getText();
         String phoneNumber = txtSellerPhoneNumber.getText();
 
-        return new Seller(firstName, lastName, address, phoneNumber);
+        return new Seller(sellerID,firstName, lastName, address, phoneNumber);
     }
 
-    private <T> boolean isValidInput(String type) {
+    private boolean isValidInput(String type) {
         StringBuilder errorMessage = new StringBuilder();
         switch (type) {
             case "Buyer":
@@ -100,6 +105,11 @@ public class AddClientController implements Initializable {
                         txtBuyerAddress.getText().isEmpty() ||
                         txtBuyerPhoneNumber.getText().isEmpty()) {
                     errorMessage.append("Please fill in all fields\n");
+                }
+                for (Buyer buyer : DataHandler.buyerList) {
+                    if ((buyer.getClientID() == Integer.parseInt(txtBuyerID.getText()))) {
+                        errorMessage.append("Client ID already exists\n");
+                    }
                 }
                 if (!Utils.Validator.isName(txtBuyerFirstName.getText())) {
                     errorMessage.append("Invalid name. Letters only\n");
@@ -119,6 +129,11 @@ public class AddClientController implements Initializable {
                         txtSellerAddress.getText().isEmpty() ||
                         txtSellerPhoneNumber.getText().isEmpty()) {
                     errorMessage.append("Please fill in all fields\n");
+                }
+                for (Seller seller : DataHandler.sellerList) {
+                    if ((seller.getClientID() == Integer.parseInt(txtSellerID.getText()))) {
+                        errorMessage.append("Seller ID already exists\n");
+                    }
                 }
                 if (!Utils.Validator.isName(txtSellerFirstName.getText())) {
                     errorMessage.append("Invalid name. Letters only\n");

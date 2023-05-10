@@ -3,17 +3,23 @@ package com.mycompany.cqrealestate_gui;
 public class Seller extends Client {
 
     // Seller attributes
+    private int ClientID;
     private String clientType = "Seller";
 
     // Seller constructor
-    public Seller(String firstName, String lastName, String address, String phoneNumber) {
-        super(firstName, lastName, address, phoneNumber);
+    public Seller(int ClientID, String firstName, String lastName, String address, String phoneNumber) {
+        super(ClientID, firstName, lastName, address, phoneNumber);
         this.clientType = clientType;
+        this.ClientID = ClientID;
     }
 
-    // Getters and setters
-    public String getClientType() {return this.clientType;}
+    // Setters
+    public void setClientID(int ClientID) {this.ClientID = ClientID;}
     public void setClientType(String clientType) {this.clientType = clientType;}
+
+    // Getters
+    public int getClientID() {return ClientID;}
+    public String getClientType() {return this.clientType;}
 
     @Override
     public String toString() {

@@ -6,20 +6,18 @@ public abstract class Client implements Serializable {
 
     // Client attributes
     private int clientID;
-    private static int lastClientID = 1;
     private String firstName;
     private String lastName;
     private String address;
     private String phoneNumber;
 
     // Client constructor
-    public Client(String firstName, String lastName, String address, String phoneNumber) {
+    public Client(int clientID, String firstName, String lastName, String address, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.clientID = lastClientID;
-        lastClientID++;
+        this.clientID = clientID;
     }
 
     // Setters

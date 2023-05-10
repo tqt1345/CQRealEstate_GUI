@@ -24,6 +24,37 @@ public class AddSaleController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
+    // Text Fields for Land Sale objects
+    // Text Fields for HouseAndLandSale Sale objects
+
+    @FXML private void handleSubmitLandSaleButton () {
+        // TODO
+    }
+
+    @FXML private void handleSubmitHouseAndLandSaleButton () {
+        // TODO
+    }
+
+    private void makeSale(String type) {
+        // TODO
+        switch (type) {
+            case "Land":
+                return;
+            case "HouseAndLand":
+                return;
+        }
+    }
+
+    private boolean isValidInput() {
+        // TODO
+        return false;
+    }
+
+    private void clearFields() {
+        // TODO
+    }
+
     @FXML private void switchToMainMenu() {
         try {
             App.setRoot("mainMenu");

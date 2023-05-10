@@ -170,7 +170,7 @@ public class AddPropertyController implements Initializable {
         }
         return true;
     }
-    @FXML private void clearFields() {
+    private void clearFields() {
         // Clearing Land fields
         txtLandId.clear();
         txtLotNumberLand.clear();

@@ -5,6 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Utils {
+    public static class Text {
+
+        // Prints a separator line
+        public static String separator(int count) {
+            return ("*" + "~".repeat(count) + "*");
+        }
+    }
     public static class Validator {
 
         // Checks if input is an int

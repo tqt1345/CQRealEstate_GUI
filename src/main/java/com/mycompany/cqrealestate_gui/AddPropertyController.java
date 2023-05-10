@@ -62,8 +62,8 @@ public class AddPropertyController implements Initializable {
                 // Make land object from input
                 Land land = makeLand();
 
-                // Write the land object to file
-                //Utils.FileHandler.writeLandToFile(land);
+                // Add land object to land list
+                DataHandler.landList.add(land);
 
                 // Show confirmation and clear fields
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
@@ -83,8 +83,8 @@ public class AddPropertyController implements Initializable {
                 // Make house and land object from input
                 HouseAndLand houseAndLand = makeHouseAndLand();
 
-                // Write the house and land object to file
-                //Utils.FileHandler.writeHouseAndLandToFile(houseAndLand);
+                // Add house and land object to house and land list
+                DataHandler.houseAndLandList.add(houseAndLand);
 
                 // Show confirmation and clear fields
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");

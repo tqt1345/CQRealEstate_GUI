@@ -28,7 +28,7 @@ public class MainMenuController implements Initializable {
      // TODO
     }
 
-    public void switchToAddProperty() throws Exception {
+    public void switchToAddProperty() {
         try {
             App.setRoot("addProperty");
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToAddClient() throws Exception {
+    public void switchToAddClient() {
         try {
             App.setRoot("addClient");
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToAddSale() throws Exception {
+    public void switchToAddSale() {
         try {
             App.setRoot("addSale");
         } catch (Exception e) {
@@ -52,7 +52,15 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    public void switchToSearchSale() throws Exception {
+    public void switchToDisplayRecords() {
+        try {
+            App.setRoot("displayRecords");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void switchToSearchSale() {
         try {
             App.setRoot("searchSale");
         } catch (Exception e) {

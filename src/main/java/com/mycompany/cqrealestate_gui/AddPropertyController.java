@@ -56,19 +56,61 @@ public class AddPropertyController implements Initializable {
     private Button submitButton;
 
     @FXML
-    private void clearFields() {
-        // Clearing Land fields
-        txtLotNumberLand.clear();
-        txtAddressLand.clear();
-        txtLandAreaLand.clear();
+    private void handleLandSubmitButton (ActionEvent event) {
+        try {
+            if (isValidInput("land")) { // If all input is valid, will run.
+                // Make land object from input
+                Land land = makeLand();
 
-        // Clearing House and land fields
-        txtLotNumberHouse.clear();
-        txtAddressHouse.clear();
-        txtLandAreaHouse.clear();
-        txtConstructedAreaHouse.clear();
-        txtBedroomsHouse.clear();
-        txtToiletsHouse.clear();
+                // Write the land object to file
+                Utils.FileHandler.writeLandToFile(land);
+
+                // Show confirmation and clear fields
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
+                alert.showAndWait();
+                clearFields();
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleHouseAndLandSubmitButton (ActionEvent event) {
+        try {
+            if (isValidInput("houseAndLand")) {
+                // Make house and land object from input
+                HouseAndLand houseAndLand = makeHouseAndLand();
+
+                // Write the house and land object to file
+                Utils.FileHandler.writeHouseAndLandToFile(houseAndLand);
+
+                // Show confirmation and clear fields
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
+                alert.showAndWait();
+                clearFields();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private Land makeLand() {
+        int lotNumber = Integer.parseInt(txtLotNumberLand.getText());
+        String address = txtAddressLand.getText();
+        double landArea = Double.parseDouble(txtLandAreaLand.getText());
+        return new Land(lotNumber, address, landArea);
+    }
+
+    private HouseAndLand makeHouseAndLand() {
+        int lotNumber = Integer.parseInt(txtLotNumberHouse.getText());
+        String address = txtAddressHouse.getText();
+        double landArea = Double.parseDouble(txtLandAreaHouse.getText());
+        double constructedArea = Double.parseDouble(txtConstructedAreaHouse.getText());
+        int bedrooms = Integer.parseInt(txtBedroomsHouse.getText());
+        int toilets = Integer.parseInt(txtToiletsHouse.getText());
+        return new HouseAndLand(lotNumber, address, landArea, constructedArea, bedrooms, toilets);
     }
 
     private boolean isValidInput (String type) {
@@ -125,33 +167,21 @@ public class AddPropertyController implements Initializable {
         }
         return true;
     }
-
     @FXML
-    private void handleLandSubmitButton (ActionEvent event) {
-        try {
-            if (isValidInput("land")) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
-                alert.showAndWait();
-                clearFields();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    private void clearFields() {
+        // Clearing Land fields
+        txtLotNumberLand.clear();
+        txtAddressLand.clear();
+        txtLandAreaLand.clear();
 
-    @FXML
-    private void handleHouseAndLandSubmitButton (ActionEvent event) {
-        if (isValidInput("houseAndLand")) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
-            alert.showAndWait();
-            clearFields();
-        }
+        // Clearing House and land fields
+        txtLotNumberHouse.clear();
+        txtAddressHouse.clear();
+        txtLandAreaHouse.clear();
+        txtConstructedAreaHouse.clear();
+        txtBedroomsHouse.clear();
+        txtToiletsHouse.clear();
     }
-
-    private void writeToFile() {
-        // TODO
-    }
-
     @FXML
     private void switchToMainMenu() throws Exception {
         try {

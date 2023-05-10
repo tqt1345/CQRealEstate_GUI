@@ -24,4 +24,14 @@ public class Utils {
         }
 
     }
+
+    public static class FileHandler {
+        public static void writeLandToFile(Land land) {
+            // TODO
+        }
+
+        public static void writeHouseAndLandToFile(HouseAndLand houseAndLand) {
+            // TODO
+        }
+    }
 }

@@ -35,7 +35,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Label text="ID" />
-                                    <TextField promptText="Enter ID" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtLandId" promptText="Enter ID" GridPane.columnIndex="1" />
                                     <Label text="Lot Number" GridPane.rowIndex="1" />
                                     <TextField fx:id="txtLotNumberLand" promptText="Enter lot number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="Address" GridPane.rowIndex="2" />
@@ -82,7 +82,7 @@
                                     <Label text="Bedrooms" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="Toilets" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label prefHeight="17.0" prefWidth="22.0" text="ID" />
-                                    <TextField promptText="Enter ID" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtHouseAndLandId" promptText="Enter ID" GridPane.columnIndex="1" />
                                     <TextField fx:id="txtToiletsHouse" promptText="Enter number of toilets" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                     <TextField fx:id="txtBedroomsHouse" promptText="Enter number of bedrooms" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                  </children>

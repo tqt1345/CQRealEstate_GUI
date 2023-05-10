@@ -5,14 +5,16 @@ import java.io.Serializable;
 public class HouseAndLand extends Land {
 
     // HouseAndLand attributes
+    private int propertyId;
     private String type = "HouseAndLand";
     private double constructedArea;
     private int bedrooms;
     private int toilets;
 
     // HouseAndLand constructor
-    public HouseAndLand(int lotNumber, String address, double landArea, double constructedArea, int bedrooms, int toilets) {
-        super(lotNumber, address, landArea);
+    public HouseAndLand(int propertyId, int lotNumber, String address, double landArea, double constructedArea, int bedrooms, int toilets) {
+        super(propertyId, lotNumber, address, landArea);
+        this.propertyId = propertyId;
         this.constructedArea = constructedArea;
         this.bedrooms = bedrooms;
         this.toilets = toilets;
@@ -35,7 +37,7 @@ public class HouseAndLand extends Land {
     public String toString(){
         // Note: super.toString() is not called due to a difference in property type
         return "Property type: " + type
-                + "\n" + "Property ID: " + getLandId()
+                + "\n" + "HouseAndLand ID: " + propertyId
                 + "\nLot number: " + getLotNumber()
                 + "\nAddress: " + getAddress()
                 + "\nLand area: " + getLandArea()

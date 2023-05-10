@@ -30,11 +30,13 @@ public class AddPropertyController implements Initializable {
     }    
 
     // Text Fields for Land objects
+    @FXML private TextField txtLandId;
     @FXML private TextField txtLotNumberLand ;
     @FXML private TextField txtAddressLand;
     @FXML private TextField txtLandAreaLand;
 
     // Text fields for HouseAndLand objects
+    @FXML private TextField txtHouseAndLandId;
     @FXML private TextField txtLotNumberHouse;
     @FXML private TextField txtAddressHouse;
     @FXML private TextField txtLandAreaHouse;
@@ -86,20 +88,22 @@ public class AddPropertyController implements Initializable {
     }
 
     private Land makeLand() {
+        int landId = Integer.parseInt(txtLandId.getText());
         int lotNumber = Integer.parseInt(txtLotNumberLand.getText());
         String address = txtAddressLand.getText();
         double landArea = Double.parseDouble(txtLandAreaLand.getText());
-        return new Land(lotNumber, address, landArea);
+        return new Land(landId, lotNumber, address, landArea);
     }
 
     private HouseAndLand makeHouseAndLand() {
+        int houseAndLandId = Integer.parseInt(txtHouseAndLandId.getText());
         int lotNumber = Integer.parseInt(txtLotNumberHouse.getText());
         String address = txtAddressHouse.getText();
         double landArea = Double.parseDouble(txtLandAreaHouse.getText());
         double constructedArea = Double.parseDouble(txtConstructedAreaHouse.getText());
         int bedrooms = Integer.parseInt(txtBedroomsHouse.getText());
         int toilets = Integer.parseInt(txtToiletsHouse.getText());
-        return new HouseAndLand(lotNumber, address, landArea, constructedArea, bedrooms, toilets);
+        return new HouseAndLand(houseAndLandId, lotNumber, address, landArea, constructedArea, bedrooms, toilets);
     }
 
     private boolean isValidInput (String type) {

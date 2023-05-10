@@ -1,9 +1,0 @@
-com\mycompany\cqrealestate_gui\App.class
-com\mycompany\cqrealestate_gui\AddPropertyController.class
-com\mycompany\cqrealestate_gui\MainMenuController.class
-testing\TestDriver.class
-module-info.class
-com\mycompany\cqrealestate_gui\SearchSaleController.class
-com\mycompany\cqrealestate_gui\AddClientController.class
-com\mycompany\cqrealestate_gui\AddSaleController.class
-com\mycompany\cqrealestate_gui\CalculateAverageController.class

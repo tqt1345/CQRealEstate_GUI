@@ -1,5 +1,9 @@
 package com.mycompany.cqrealestate_gui;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Utils {
     public static class Validator {
 
@@ -24,14 +28,28 @@ public class Utils {
         }
 
     }
+    // End of Validator class
 
+
+    /*
     public static class FileHandler {
         public static void writeLandToFile(Land land) {
             // TODO
+            try {
+                File file = new File("land.txt"); // Change the file name and path as per your requirements
+                FileWriter writer = new FileWriter(file, true);
+                writer.write(land.toString() + "\n");
+                writer.close();
+            } catch (Exception e) {
+
+                System.out.println(e.getMessage());
+            }
         }
 
         public static void writeHouseAndLandToFile(HouseAndLand houseAndLand) {
             // TODO
         }
     }
+     */
+
 }

@@ -35,6 +35,15 @@ public class Utils {
             }
         }
 
+        // Checks if input is a name
+        public static boolean isName(String input) {
+            return input.matches("[a-zA-Z]+");
+        }
+
+        // Checks if input is a phone number
+        public static boolean isPhoneNumber(String input) {
+            return input.length() == 8 && input.matches("[0-9]+");
+        }
     }
     // End of Validator class
 

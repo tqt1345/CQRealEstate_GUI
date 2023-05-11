@@ -65,6 +65,8 @@ public class AddPropertyController implements Initializable {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+            System.out.println(e.getCause());
         }
     }
 
@@ -107,72 +109,90 @@ public class AddPropertyController implements Initializable {
     }
 
     private boolean isValidInput (String type) {
-        StringBuilder errorMessage = new StringBuilder();
-        switch (type) {
-            case "land":
-                if (    txtLandId.getText().isEmpty() ||
-                        txtLotNumberLand.getText().isEmpty() ||
-                        txtAddressLand.getText().isEmpty() ||
-                        txtLandAreaLand.getText().isEmpty()) {
+        try {
+            StringBuilder errorMessage = new StringBuilder();
+            switch (type) {
+                case "land":
+                    if (    txtLandId.getText().isEmpty() ||
+                            txtLotNumberLand.getText().isEmpty() ||
+                            txtAddressLand.getText().isEmpty() ||
+                            txtLandAreaLand.getText().isEmpty()) {
 
                         errorMessage.append("All fields must be filled\n");
-                }
-                
-                for (Land land : DataHandler.landList) {
-                    if (land.getPropertyId() == Integer.parseInt(txtLandId.getText())) {
-                        errorMessage.append("Land ID already exists\n");
                     }
-                }
-                if (!Utils.Validator.isInteger(txtLotNumberLand.getText())) {
-                    errorMessage.append("Lot number must be an integer\n");
-                }
-                if (!Utils.Validator.isDouble(txtLandAreaLand.getText())) {
-                    errorMessage.append("Land area must be a double\n");
-                }
-                if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
-                    return false;
-                }
-                break;
-            case "houseAndLand":
-                if (    txtHouseAndLandId.getText().isEmpty() ||
-                        txtLotNumberHouse.getText().isEmpty() ||
-                        txtAddressHouse.getText().isEmpty() ||
-                        txtLandAreaHouse.getText().isEmpty() ||
-                        txtConstructedAreaHouse.getText().isEmpty() ||
-                        txtBedroomsHouse.getText().isEmpty() ||
-                        txtToiletsHouse.getText().isEmpty()) {
+                    if (!Utils.Validator.isInteger(txtLandId.getText())) {
+                        errorMessage.append("Land ID must be an integer\n");
+                    } else {
+                        int landId = Integer.parseInt(txtLandId.getText());
+                        for (Land land : DataHandler.landList) {
+                            if (land.getPropertyId() == landId) {
+                                errorMessage.append("Land ID already exists\n");
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!Utils.Validator.isInteger(txtLotNumberLand.getText())) {
+                        errorMessage.append("Lot number must be an integer\n");
+                    }
+                    if (!Utils.Validator.isDouble(txtLandAreaLand.getText())) {
+                        errorMessage.append("Land area must be a double\n");
+                    }
+                    if (errorMessage.length() > 0) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
+                        alert.showAndWait();
+                        return false;
+                    }
+                    break;
+                case "houseAndLand":
+                    if (    txtHouseAndLandId.getText().isEmpty() ||
+                            txtLotNumberHouse.getText().isEmpty() ||
+                            txtAddressHouse.getText().isEmpty() ||
+                            txtLandAreaHouse.getText().isEmpty() ||
+                            txtConstructedAreaHouse.getText().isEmpty() ||
+                            txtBedroomsHouse.getText().isEmpty() ||
+                            txtToiletsHouse.getText().isEmpty()) {
 
                         errorMessage.append("All fields must be filled\n");
-                }
-                for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
-                    if (houseAndLand.getPropertyId() == Integer.parseInt(txtHouseAndLandId.getText())) {
-                        errorMessage.append("HouseAndLand ID already exists\n");
                     }
-                }
-                if (!Utils.Validator.isInteger(txtLotNumberHouse.getText())) {
-                    errorMessage.append("Lot number must be an integer\n");
-                }
-                if (!Utils.Validator.isDouble(txtLandAreaHouse.getText())) {
-                    errorMessage.append("Land area must be a double\n");
-                }
-                if (!Utils.Validator.isDouble(txtConstructedAreaHouse.getText())) {
-                    errorMessage.append("Constructed area must be a double\n");
-                }
-                if (!Utils.Validator.isInteger(txtBedroomsHouse.getText())) {
-                    errorMessage.append("Bedrooms must be an integer\n");
-                }
-                if (!Utils.Validator.isInteger(txtToiletsHouse.getText())) {
-                    errorMessage.append("Bathrooms must be an integer\n");
-                }
-                if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
-                    return false;
-                }
-                break;
+                    if (!Utils.Validator.isInteger(txtHouseAndLandId.getText())) {
+                        errorMessage.append("House and land ID must be an integer\n");
+                    } else {
+                        int houseAndLandId = Integer.parseInt(txtHouseAndLandId.getText());
+                        for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
+                            if (houseAndLand.getPropertyId() == houseAndLandId) {
+                                errorMessage.append("House and land ID already exists\n");
+                                break;
+                            }
+                        }
+                    }
+                    if (!Utils.Validator.isInteger(txtLotNumberHouse.getText())) {
+                        errorMessage.append("Lot number must be an integer\n");
+                    }
+                    if (!Utils.Validator.isDouble(txtLandAreaHouse.getText())) {
+                        errorMessage.append("Land area must be a double\n");
+                    }
+                    if (!Utils.Validator.isDouble(txtConstructedAreaHouse.getText())) {
+                        errorMessage.append("Constructed area must be a double\n");
+                    }
+                    if (!Utils.Validator.isInteger(txtBedroomsHouse.getText())) {
+                        errorMessage.append("Bedrooms must be an integer\n");
+                    }
+                    if (!Utils.Validator.isInteger(txtToiletsHouse.getText())) {
+                        errorMessage.append("Bathrooms must be an integer\n");
+                    }
+                    if (errorMessage.length() > 0) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
+                        alert.showAndWait();
+                        return false;
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("An error occurred while validating input");
         }
+
         return true;
     }
     private void clearFields() {

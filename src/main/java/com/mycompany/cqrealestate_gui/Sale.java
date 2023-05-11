@@ -6,7 +6,6 @@ public class Sale implements Serializable {
 
     // Sale attributes
     private int saleID;
-    private static int lastSaleID = 1;
     private String date;
     private double soldPrice;
     private Land property;
@@ -14,14 +13,15 @@ public class Sale implements Serializable {
     private Buyer buyer;
 
     // Sale constructor
-    public Sale(String date, double soldPrice, Land property, Seller seller, Buyer buyer) {
+    public Sale(int saleID, String date, double soldPrice, Land property, Seller seller, Buyer buyer) {
+        this.saleID = saleID;
         this.date = date;
         this.soldPrice = soldPrice;
         this.property = property;
         this.seller = seller;
         this.buyer = buyer;
-        this.saleID = lastSaleID;
-        lastSaleID++;
+
+
     }
 
     // Getters

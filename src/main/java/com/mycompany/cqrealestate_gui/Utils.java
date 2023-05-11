@@ -1,9 +1,7 @@
 package com.mycompany.cqrealestate_gui;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Utils {
     public static class Text {
@@ -43,6 +41,17 @@ public class Utils {
         // Checks if input is a phone number
         public static boolean isPhoneNumber(String input) {
             return input.length() == 8 && input.matches("[0-9]+");
+        }
+
+        // Checks if date is of the correct format
+        public static boolean isDate(String input) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate date = LocalDate.parse(input, formatter);
+                return formatter.format(date).equals(input);
+            } catch (Exception e) {
+                return false;
+            }
         }
     }
     // End of Validator class

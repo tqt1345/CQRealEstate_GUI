@@ -110,11 +110,14 @@ public class AddPropertyController implements Initializable {
         StringBuilder errorMessage = new StringBuilder();
         switch (type) {
             case "land":
-                if (txtLotNumberLand.getText().isEmpty() ||
+                if (    txtLandId.getText().isEmpty() ||
+                        txtLotNumberLand.getText().isEmpty() ||
                         txtAddressLand.getText().isEmpty() ||
                         txtLandAreaLand.getText().isEmpty()) {
-                    errorMessage.append("All fields must be filled\n");
+
+                        errorMessage.append("All fields must be filled\n");
                 }
+                
                 for (Land land : DataHandler.landList) {
                     if (land.getPropertyId() == Integer.parseInt(txtLandId.getText())) {
                         errorMessage.append("Land ID already exists\n");
@@ -133,13 +136,15 @@ public class AddPropertyController implements Initializable {
                 }
                 break;
             case "houseAndLand":
-                if (txtLotNumberHouse.getText().isEmpty() ||
+                if (    txtHouseAndLandId.getText().isEmpty() ||
+                        txtLotNumberHouse.getText().isEmpty() ||
                         txtAddressHouse.getText().isEmpty() ||
                         txtLandAreaHouse.getText().isEmpty() ||
                         txtConstructedAreaHouse.getText().isEmpty() ||
                         txtBedroomsHouse.getText().isEmpty() ||
                         txtToiletsHouse.getText().isEmpty()) {
-                    errorMessage.append("All fields must be filled\n");
+
+                        errorMessage.append("All fields must be filled\n");
                 }
                 for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
                     if (houseAndLand.getPropertyId() == Integer.parseInt(txtHouseAndLandId.getText())) {

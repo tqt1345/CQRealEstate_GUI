@@ -59,9 +59,6 @@ public class DataHandler {
         sellerList.clear();
         saleList.clear();
 
-        File file = new File("ObjectData.ser");
-        if (file.delete()) {
-            return;
-        }
+        saveData();
     }
 }

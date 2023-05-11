@@ -78,41 +78,69 @@ public class AddSaleController implements Initializable {
         }
     }
     private Sale makeSale(String type){
-        // TODO
         switch (type) {
             case "Land":
-                int saleId = Integer.parseInt(txtSaleIdLand.getText());
-                String date = txtDateLand.getText();
-                double soldPrice = Double.parseDouble(txtSoldPriceLand.getText());
+                int landSaleId = Integer.parseInt(txtSaleIdLand.getText());
+                String landDate = txtDateLand.getText();
+                double landSoldPrice = Double.parseDouble(txtSoldPriceLand.getText());
                 Land land = getLand(txtLandIdLand.getText());
-                Seller seller = getSeller(txtSellerIdLand.getText());
-                Buyer buyer = getBuyer(txtBuyerIdLand.getText());
+                Seller landSeller = getSeller(txtSellerIdLand.getText());
+                Buyer landBuyer = getBuyer(txtBuyerIdLand.getText());
 
-                return new Sale(saleId, date, soldPrice, land, seller, buyer);
+                return new Sale(landSaleId, landDate, landSoldPrice, land, landSeller, landBuyer);
             case "HouseAndLand":
-                // TODO
-                break;
+                int houseAndLandSaleId = Integer.parseInt(txtSaleIdHouseAndLand.getText());
+                String houseAndLandDate = txtDateHouseAndLand.getText();
+                double houseAndLandSoldPrice = Double.parseDouble(txtSoldPriceHouseAndLand.getText());
+                HouseAndLand houseAndLand = getHouseAndLand(txtHouseAndLandIdHouseAndLand.getText());
+                Seller houseAndLandSeller = getSeller(txtSellerIdHouseAndLand.getText());
+                Buyer houseAndLandBuyer = getBuyer(txtBuyerIdHouseAndLand.getText());
+
+                return new Sale(
+                        houseAndLandSaleId,
+                        houseAndLandDate,
+                        houseAndLandSoldPrice,
+                        houseAndLand,
+                        houseAndLandSeller,
+                        houseAndLandBuyer);
         }
         return null;
     }
 
     private Land getLand(String Id) {
-        // TODO
+        for (Land land : DataHandler.landList) {
+            if (land.getPropertyId() == Integer.parseInt(Id)) {
+                return land;
+            }
+        }
         return null;
     }
 
     private HouseAndLand getHouseAndLand(String Id) {
-        // TODO
+        for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
+            if (houseAndLand.getPropertyId() == Integer.parseInt(Id)) {
+                return houseAndLand;
+            }
+        }
         return null;
     }
 
     private Seller getSeller(String Id) {
-        // TODO
+
+        for (Seller seller : DataHandler.sellerList) {
+            if (seller.getClientID() == Integer.parseInt(Id)) {
+                return seller;
+            }
+        }
         return null;
     }
 
     private Buyer getBuyer(String Id) {
-        // TODO
+        for (Buyer buyer : DataHandler.buyerList) {
+            if (buyer.getClientID() == Integer.parseInt(Id)) {
+                return buyer;
+            }
+        }
         return null;
     }
 
@@ -211,7 +239,7 @@ public class AddSaleController implements Initializable {
                     errorMessage.append("Sale ID must be an integer\n");
                 } else {
                     for (Sale sale : DataHandler.saleList) {
-                        if (Integer.parseInt(txtSaleIdHouseAndLand.getText()) == sale.getSaleID()) {
+                        if (sale.getSaleID() == Integer.parseInt(txtSaleIdHouseAndLand.getText())) {
                             errorMessage.append("Sale ID already exists\n");
                         }
                     }
@@ -268,6 +296,10 @@ public class AddSaleController implements Initializable {
                         errorMessage.append(txtSellerIdHouseAndLand.getText());
                         errorMessage.append("\n");
                     }
+                }
+                if (errorMessage.length() > 0) {
+                    Utils.Text.showError(errorMessage.toString());
+                    return false;
                 }
         }
         return true;

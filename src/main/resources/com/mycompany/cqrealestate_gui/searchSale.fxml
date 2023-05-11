@@ -7,15 +7,15 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Search Sale" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.mycompany.cqrealestate_gui.SearchSaleController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Search Sale" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.cqrealestate_gui.SearchSaleController">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
             <Button layoutX="132.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" />
-            <Button layoutX="57.0" layoutY="288.0" mnemonicParsing="false" text="Submit" />
+            <Button layoutX="57.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleSearchButton" text="Search" />
             <Label layoutX="73.0" layoutY="129.0" text="Enter sale ID to search" />
-            <TextField layoutX="57.0" layoutY="175.0" />
-            <TextArea layoutX="251.0" layoutY="22.0" prefHeight="334.0" prefWidth="328.0" />
+            <TextField fx:id="txtSaleId" layoutX="57.0" layoutY="175.0" />
+            <TextArea fx:id="txtSaleRecords" layoutX="251.0" layoutY="22.0" prefHeight="334.0" prefWidth="328.0" />
          </children></AnchorPane>
   </content>
 </TitledPane>

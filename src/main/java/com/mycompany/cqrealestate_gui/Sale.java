@@ -42,22 +42,19 @@ public class Sale implements Serializable {
 
     @Override
     public String toString(){
-        // TODO
-        /*
+
         return "Sale info:\n"
                 + "\nSale ID: " + saleID
                 + "\nDate: " + date
                 + "\nSold price: " + soldPrice + "\n"
-                + Util.separator(30)
+                + Utils.Text.separator(30)
                 + "\nProperty info:\n\n" + property + "\n"
-                + Util.separator(30)
+                + Utils.Text.separator(30)
                 + "\nSeller info:\n\n" + seller + "\n"
-                + Util.separator(30)
+                + Utils.Text.separator(30)
                 + "\nBuyer info:\n\n" + buyer;
-         */
 
 
-        return null;
     }
 
 }

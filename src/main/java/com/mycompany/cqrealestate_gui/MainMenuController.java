@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import testing.TestData;
 
@@ -68,11 +69,23 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    @FXML private void switchToCalculateAverage() throws Exception {
+    @FXML private void handleCalculateAverageButton() {
         try {
-            App.setRoot("calculateAverage");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            if (DataHandler.saleList.isEmpty()) {
+                Utils.Text.showError("Can't calculate average, no sale records");
+            } else {
+                double sum = 0;
+                double average = 0;
+                int count = DataHandler.saleList.size();
+                for (Sale sale : DataHandler.saleList) {
+                    sum += sale.getSoldPrice();
+                }
+
+                average = sum / count;
+                Utils.Text.showConfirmation("Average price of all sales is: " + average);
+            }
+        }catch (Exception e) {
+            Utils.Text.showError("Error calculating average\n" + e.getMessage());
         }
     }
 

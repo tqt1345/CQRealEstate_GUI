@@ -1,5 +1,7 @@
 package com.mycompany.cqrealestate_gui;
 
+import javafx.scene.control.Alert;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +12,18 @@ public class Utils {
         public static String separator(int count) {
             return ("*" + "~".repeat(count) + "*");
         }
+
+        public static void showConfirmation(String input) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, input);
+            alert.showAndWait();
+        }
+
+        public static void showError(String input) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, input);
+            alert.showAndWait();
+        }
     }
+
     public static class Validator {
 
         // Checks if input is an int

@@ -58,15 +58,12 @@ public class AddPropertyController implements Initializable {
                 DataHandler.landList.add(land);
 
                 // Show confirmation and clear fields
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Land added successfully");
-                alert.showAndWait();
+                Utils.Text.showConfirmation("Land added successfully");
                 clearFields();
 
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getStackTrace());
-            System.out.println(e.getCause());
+            Utils.Text.showError(e.getMessage());
         }
     }
 
@@ -80,12 +77,11 @@ public class AddPropertyController implements Initializable {
                 DataHandler.houseAndLandList.add(houseAndLand);
 
                 // Show confirmation and clear fields
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "House and land added successfully");
-                alert.showAndWait();
+                Utils.Text.showConfirmation("House and land added successfully");
                 clearFields();
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError(e.getMessage());
         }
     }
 
@@ -123,9 +119,8 @@ public class AddPropertyController implements Initializable {
                     if (!Utils.Validator.isInteger(txtLandId.getText())) {
                         errorMessage.append("Land ID must be an integer\n");
                     } else {
-                        int landId = Integer.parseInt(txtLandId.getText());
                         for (Land land : DataHandler.landList) {
-                            if (land.getPropertyId() == landId) {
+                            if (land.getPropertyId() == Integer.parseInt(txtLandId.getText())) {
                                 errorMessage.append("Land ID already exists\n");
                                 break;
                             }
@@ -139,8 +134,7 @@ public class AddPropertyController implements Initializable {
                         errorMessage.append("Land area must be a double\n");
                     }
                     if (errorMessage.length() > 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                        alert.showAndWait();
+                        Utils.Text.showError(errorMessage.toString());
                         return false;
                     }
                     break;
@@ -158,9 +152,8 @@ public class AddPropertyController implements Initializable {
                     if (!Utils.Validator.isInteger(txtHouseAndLandId.getText())) {
                         errorMessage.append("House and land ID must be an integer\n");
                     } else {
-                        int houseAndLandId = Integer.parseInt(txtHouseAndLandId.getText());
                         for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
-                            if (houseAndLand.getPropertyId() == houseAndLandId) {
+                            if (houseAndLand.getPropertyId() == Integer.parseInt(txtHouseAndLandId.getText())) {
                                 errorMessage.append("House and land ID already exists\n");
                                 break;
                             }
@@ -182,15 +175,14 @@ public class AddPropertyController implements Initializable {
                         errorMessage.append("Bathrooms must be an integer\n");
                     }
                     if (errorMessage.length() > 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                        alert.showAndWait();
+                        Utils.Text.showError(errorMessage.toString());
                         return false;
                     }
                     break;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("An error occurred while validating input");
+            Utils.Text.showError(e.getMessage());
+            return false;
         }
 
         return true;

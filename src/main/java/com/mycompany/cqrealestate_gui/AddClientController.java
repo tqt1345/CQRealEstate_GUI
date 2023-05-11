@@ -97,66 +97,81 @@ public class AddClientController implements Initializable {
     }
 
     private boolean isValidInput(String type) {
-        StringBuilder errorMessage = new StringBuilder();
-        switch (type) {
-            case "Buyer":
-                if (txtBuyerFirstName.getText().isEmpty() ||
-                        txtBuyerLastName.getText().isEmpty() ||
-                        txtBuyerAddress.getText().isEmpty() ||
-                        txtBuyerPhoneNumber.getText().isEmpty()) {
-                    errorMessage.append("Please fill in all fields\n");
-                }
-                for (Buyer buyer : DataHandler.buyerList) {
-                    if ((buyer.getClientID() == Integer.parseInt(txtBuyerID.getText()))) {
-                        errorMessage.append("Client ID already exists\n");
+        try {
+            StringBuilder errorMessage = new StringBuilder();
+            switch (type) {
+                case "Buyer":
+                    if (    txtBuyerID.getText().isEmpty() ||
+                            txtBuyerFirstName.getText().isEmpty() ||
+                            txtBuyerLastName.getText().isEmpty() ||
+                            txtBuyerAddress.getText().isEmpty() ||
+                            txtBuyerPhoneNumber.getText().isEmpty()) {
+                            errorMessage.append("Please fill in all fields\n");
                     }
-                }
-                if (!Utils.Validator.isName(txtBuyerFirstName.getText())) {
-                    errorMessage.append("Invalid name. Letters only\n");
-                }
-                if (!Utils.Validator.isPhoneNumber(txtBuyerPhoneNumber.getText())) {
-                    errorMessage.append("Invalid phone number. 8 digit number only\n");
-                }
-                if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
-                    return false;
-                }
-                break;
-            case "Seller":
-                if (txtSellerFirstName.getText().isEmpty() ||
-                        txtSellerLastName.getText().isEmpty() ||
-                        txtSellerAddress.getText().isEmpty() ||
-                        txtSellerPhoneNumber.getText().isEmpty()) {
-                    errorMessage.append("Please fill in all fields\n");
-                }
-                for (Seller seller : DataHandler.sellerList) {
-                    if ((seller.getClientID() == Integer.parseInt(txtSellerID.getText()))) {
-                        errorMessage.append("Seller ID already exists\n");
+                    if (!Utils.Validator.isInteger(txtBuyerID.getText())) {
+                        errorMessage.append("Buyer ID must be an integer\n");
+                    } else {
+                        for (Buyer buyer : DataHandler.buyerList) {
+                            if ((buyer.getClientID() == Integer.parseInt(txtBuyerID.getText()))) {
+                                errorMessage.append("Buyer ID already exists\n");
+                            }
+                        }
                     }
-                }
-                if (!Utils.Validator.isName(txtSellerFirstName.getText())) {
-                    errorMessage.append("Invalid name. Letters only\n");
-                }
-                if (!Utils.Validator.isPhoneNumber(txtSellerPhoneNumber.getText())) {
-                    errorMessage.append("Invalid phone number. 8 digit number only\n");
-                }
-                if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
-                    return false;
-                }
-                break;
+                    if (!Utils.Validator.isName(txtBuyerFirstName.getText())) {
+                        errorMessage.append("Invalid name. Letters only\n");
+                    }
+                    if (!Utils.Validator.isPhoneNumber(txtBuyerPhoneNumber.getText())) {
+                        errorMessage.append("Invalid phone number. 8 digit number only\n");
+                    }
+                    if (errorMessage.length() > 0) {
+                        Utils.Text.showError(errorMessage.toString());
+                        return false;
+                    }
+                    break;
+                case "Seller":
+                    if (    txtSellerID.getText().isEmpty() ||
+                            txtSellerFirstName.getText().isEmpty() ||
+                            txtSellerLastName.getText().isEmpty() ||
+                            txtSellerAddress.getText().isEmpty() ||
+                            txtSellerPhoneNumber.getText().isEmpty()) {
+                            errorMessage.append("Please fill in all fields\n");
+                    }
+                    if (!Utils.Validator.isInteger(txtSellerID.getText())) {
+                        errorMessage.append("Seller ID must be an integer\n");
+                    } else {
+                        for (Seller seller : DataHandler.sellerList) {
+                            if ((seller.getClientID() == Integer.parseInt(txtSellerID.getText()))) {
+                                errorMessage.append("Seller ID already exists\n");
+                            }
+                        }
+                    }
+                    if (!Utils.Validator.isName(txtSellerFirstName.getText())) {
+                        errorMessage.append("Invalid name. Letters only\n");
+                    }
+                    if (!Utils.Validator.isPhoneNumber(txtSellerPhoneNumber.getText())) {
+                        errorMessage.append("Invalid phone number. 8 digit number only\n");
+                    }
+                    if (errorMessage.length() > 0) {
+                        Utils.Text.showError(errorMessage.toString());
+                        return false;
+                    }
+                    break;
+            }
+        }catch (Exception e) {
+            Utils.Text.showError(e.getMessage());
         }
+
         return true;
     }
 
     private void clearFields() {
+        txtBuyerID.clear();
         txtBuyerFirstName.clear();
         txtBuyerLastName.clear();
         txtBuyerAddress.clear();
         txtBuyerPhoneNumber.clear();
 
+        txtSellerID.clear();
         txtSellerFirstName.clear();
         txtSellerLastName.clear();
         txtSellerAddress.clear();

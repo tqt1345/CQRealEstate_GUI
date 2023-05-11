@@ -47,7 +47,7 @@
                                     <TextField fx:id="txtSoldPriceLand" promptText="Enter sold price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField fx:id="txtDateLand" promptText="dd/mm/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="Sale ID" />
-                                    <TextField fx:id="txtSaleIdLand" promptText="Enter Seller ID" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtSaleIdLand" promptText="Enter sale ID" GridPane.columnIndex="1" />
                                     <TextField fx:id="txtBuyerIdLand" promptText="Enter Buyer ID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <Label text="Buyer ID" GridPane.rowIndex="4" />
                                  </children>
@@ -72,20 +72,23 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label text="Date sold" />
-                                    <Label text="Sold Price" GridPane.rowIndex="1" />
-                                    <Label text="HouseAndLand ID" GridPane.rowIndex="2" />
-                                    <Label text="Seller ID" GridPane.rowIndex="3" />
-                                    <Label text="Label" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" text="Submit" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField promptText="Enter buyer ID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="txtLandAreaLand211" promptText="Enter seller ID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="txtAddressLand211" promptText="Enter land ID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="txtLotNumberLand211" promptText="Enter sold price" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField promptText="Enter date sold" GridPane.columnIndex="1" />
+                                    <Label text="Date sold" GridPane.rowIndex="1" />
+                                    <Label text="Sold Price" GridPane.rowIndex="2" />
+                                    <Label text="HouseAndLand ID" GridPane.rowIndex="3" />
+                                    <Label text="Seller ID" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" onAction="#handleSubmitHouseAndLandSaleButton" text="Submit" GridPane.rowIndex="6" />
+                                    <Button mnemonicParsing="false" onAction="#switchToMainMenu" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="txtSellerIdHouseAndLand" promptText="Enter seller ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="txtHouseAndLandIdHouseAndLand" promptText="Enter House and Land ID" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtSoldPriceHouseAndLand" promptText="Enter sold price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtDateHouseAndLand" promptText="dd/mm/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Sale ID" />
+                                    <TextField fx:id="txtSaleIdHouseAndLand" promptText="Enter sale ID" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtBuyerIdHouseAndLand" promptText="Enter Buyer ID" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Buyer ID" GridPane.rowIndex="4" />
                                  </children>
                               </GridPane>
                            </children>

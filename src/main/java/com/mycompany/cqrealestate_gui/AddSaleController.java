@@ -4,7 +4,9 @@
  */
 package com.mycompany.cqrealestate_gui;
 
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -52,20 +54,29 @@ public class AddSaleController implements Initializable {
                 DataHandler.saleList.add(sale);
 
                 // Show confirmation and clear fields
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.showAndWait();
+                Utils.Text.showConfirmation("Sale added successfully");
                 clearFields();
             }
         }catch (Exception e) {
-            // TODO JOptionPane
-            System.out.println(e);
+            Utils.Text.showError(e.getMessage());
         }
     }
 
     @FXML private void handleSubmitHouseAndLandSaleButton () {
-        // TODO
-    }
+        try {
+            if(isValidInput("HouseAndLand")) {
+                // Make sale object from input
+                Sale sale = makeSale("HouseAndLand");
+                DataHandler.saleList.add(sale);
 
+                // Show confirmation and clear fields
+                Utils.Text.showConfirmation("Sale added successfully");
+                clearFields();
+            }
+        } catch (Exception e) {
+            Utils.Text.showError(e.getMessage());
+        }
+    }
     private Sale makeSale(String type){
         // TODO
         switch (type) {
@@ -105,120 +116,165 @@ public class AddSaleController implements Initializable {
         return null;
     }
 
+
     private boolean isValidInput(String type) {
         StringBuilder errorMessage = new StringBuilder();
         switch (type) {
             case "Land":
-                if (txtSaleIdLand.getText().isEmpty() ||
+                if (    txtSaleIdLand.getText().isEmpty() ||
                         txtDateLand.getText().isEmpty() ||
                         txtSoldPriceLand.getText().isEmpty() ||
                         txtLandIdLand.getText().isEmpty() ||
                         txtBuyerIdLand.getText().isEmpty() ||
                         txtSellerIdLand.getText().isEmpty()) {
-                    errorMessage.append("All fields must be filled.\n");
+                        errorMessage.append("All fields must be filled.\n");
                 }
-                for (Sale sale : DataHandler.saleList) {
-                    if (sale.getSaleID() == Integer.parseInt(txtSaleIdLand.getText())) {
-                        errorMessage.append("Sale ID already exists\n");
+                if (!Utils.Validator.isInteger(txtSaleIdLand.getText())) {
+                    errorMessage.append("Sale ID must be an integer\n");
+                } else {
+                    for (Sale sale : DataHandler.saleList) {
+                        if (sale.getSaleID() == Integer.parseInt(txtSaleIdLand.getText())) {
+                            errorMessage.append("Sale ID already exists\n");
+                        }
                     }
                 }
                 if (!Utils.Validator.isDate(txtDateLand.getText())) {
                     errorMessage.append("Invalid date, must be in the format: (dd/mm/yyyy)\n");
                 }
-                if (Utils.Validator.isDouble(txtSoldPriceLand.getText())) {
+                if (!Utils.Validator.isDouble(txtSoldPriceLand.getText())) {
                     errorMessage.append("Sold price must be a double\n");
                 }
-                if (Utils.Validator.isInteger(txtLandIdLand.getText())) {
+                if (!Utils.Validator.isInteger(txtLandIdLand.getText())) {
                     errorMessage.append("Land ID must be an integer\n");
-                }
-                for (Land land : DataHandler.landList) {
-                    if (!(Integer.parseInt(txtLandIdLand.getText()) == land.getPropertyId())) {
+                } else {
+                    boolean landExists = false;
+                    for (Land land : DataHandler.landList) {
+                        if (land.getPropertyId() == Integer.parseInt(txtLandIdLand.getText())) {
+                            landExists = true;
+                        }
+                    }
+                    if (!landExists) {
                         errorMessage.append("No Land entry with ID: ");
                         errorMessage.append(txtLandIdLand.getText());
                         errorMessage.append("\n");
                     }
                 }
-                if (Utils.Validator.isInteger(txtBuyerIdLand.getText())) {
+
+                if (!Utils.Validator.isInteger(txtBuyerIdLand.getText())) {
                     errorMessage.append("Buyer ID must be an integer\n");
-                }
-                for (Buyer buyer : DataHandler.buyerList) {
-                    if (!(Integer.parseInt(txtBuyerIdLand.getText()) == buyer.getClientID())) {
+                } else {
+                    boolean buyerExists = false;
+                    for (Buyer buyer : DataHandler.buyerList) {
+                        if (buyer.getClientID() == Integer.parseInt(txtBuyerIdLand.getText())) {
+                            buyerExists = true;
+                        }
+                    }
+                    if (!buyerExists) {
                         errorMessage.append("No Buyer entry with ID: ");
                         errorMessage.append(txtBuyerIdLand.getText());
                         errorMessage.append("\n");
                     }
                 }
-                if (Utils.Validator.isInteger(txtSellerIdLand.getText())) {
+
+                if (!Utils.Validator.isInteger(txtSellerIdLand.getText())) {
                     errorMessage.append("Seller ID must be an integer\n");
-                }
-                for (Seller seller : DataHandler.sellerList) {
-                    if (!(Integer.parseInt(txtSellerIdLand.getText()) == seller.getClientID())) {
+                } else {
+                    boolean sellerExists = false;
+                    for (Seller seller : DataHandler.sellerList) {
+                        if (seller.getClientID() == Integer.parseInt(txtSellerIdLand.getText())) {
+                            sellerExists = true;
+                        }
+                    }
+                    if (!sellerExists) {
                         errorMessage.append("No Seller entry with ID: ");
                         errorMessage.append(txtSellerIdLand.getText());
                         errorMessage.append("\n");
                     }
                 }
+
                 if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
+                    Utils.Text.showError(errorMessage.toString());
                     return false;
                 }
                 break;
 
             case "HouseAndLand":
-                if (txtSaleIdHouseAndLand.getText().isEmpty() ||
+                if (    txtSaleIdHouseAndLand.getText().isEmpty() ||
                         txtDateHouseAndLand.getText().isEmpty() ||
                         txtSoldPriceHouseAndLand.getText().isEmpty() ||
                         txtHouseAndLandIdHouseAndLand.getText().isEmpty() ||
                         txtBuyerIdHouseAndLand.getText().isEmpty() ||
                         txtSellerIdHouseAndLand.getText().isEmpty()) {
-                    errorMessage.append("All fields must be filled.\n");
+                        errorMessage.append("All fields must be filled.\n");
                 }
-                for (Sale sale : DataHandler.saleList) {
-                    if (sale.getSaleID() == Integer.parseInt(txtSaleIdHouseAndLand.getText())) {
-                        errorMessage.append("Sale ID already exists\n");
+                if (!Utils.Validator.isInteger(txtSaleIdHouseAndLand.getText())) {
+                    errorMessage.append("Sale ID must be an integer\n");
+                } else {
+                    for (Sale sale : DataHandler.saleList) {
+                        if (Integer.parseInt(txtSaleIdHouseAndLand.getText()) == sale.getSaleID()) {
+                            errorMessage.append("Sale ID already exists\n");
+                        }
                     }
                 }
                 if (!Utils.Validator.isDate(txtDateHouseAndLand.getText())) {
                     errorMessage.append("Invalid date, must be in the format: (dd/mm/yyyy)\n");
                 }
-                if (Utils.Validator.isDouble(txtSoldPriceHouseAndLand.getText())) {
+                if (!Utils.Validator.isDouble(txtSoldPriceHouseAndLand.getText())) {
                     errorMessage.append("Sold price must be a double\n");
                 }
-                if (Utils.Validator.isInteger(txtHouseAndLandIdHouseAndLand.getText())) {
+                if (!Utils.Validator.isInteger(txtHouseAndLandIdHouseAndLand.getText())) {
                     errorMessage.append("House and Land ID must be an integer\n");
-                }
-                for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
-                    if (!(Integer.parseInt(txtHouseAndLandIdHouseAndLand.getText()) == houseAndLand.getPropertyId())) {
+                } else {
+                    boolean houseAndLandExists = false;
+                    for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
+                        if (houseAndLand.getPropertyId() == Integer.parseInt(txtHouseAndLandIdHouseAndLand.getText())) {
+                            houseAndLandExists = true;
+                        }
+                    }
+                    if (!houseAndLandExists) {
                         errorMessage.append("No House and Land entry with ID: ");
                         errorMessage.append(txtHouseAndLandIdHouseAndLand.getText());
                         errorMessage.append("\n");
                     }
                 }
-                if (Utils.Validator.isInteger(txtBuyerIdHouseAndLand.getText())) {
+                if (!Utils.Validator.isInteger(txtBuyerIdHouseAndLand.getText())) {
                     errorMessage.append("Buyer ID must be an integer\n");
-                }
-                for (Buyer buyer : DataHandler.buyerList) {
-                    if (!(Integer.parseInt(txtBuyerIdHouseAndLand.getText()) == buyer.getClientID())) {
+                } else {
+                    boolean buyerExists = false;
+                    for (Buyer buyer : DataHandler.buyerList) {
+                        if (buyer.getClientID() == Integer.parseInt(txtBuyerIdHouseAndLand.getText())) {
+                            buyerExists = true;
+                            break;
+                        }
+                    }
+                    if (!buyerExists) {
                         errorMessage.append("No Buyer entry with ID: ");
                         errorMessage.append(txtBuyerIdHouseAndLand.getText());
                         errorMessage.append("\n");
                     }
                 }
-                if (Utils.Validator.isInteger(txtSellerIdHouseAndLand.getText())) {
+                if (!Utils.Validator.isInteger(txtSellerIdHouseAndLand.getText())) {
                     errorMessage.append("Seller ID must be an integer\n");
+                } else {
+                    boolean sellerExists = false;
+                    for (Seller seller : DataHandler.sellerList) {
+                        if (!(Integer.parseInt(txtSellerIdHouseAndLand.getText()) == seller.getClientID())) {
+                            sellerExists = true;
+                            break;
+                        }
+                    }
+                    if (!sellerExists) {
+                        errorMessage.append("No Seller entry with ID: ");
+                        errorMessage.append(txtSellerIdHouseAndLand.getText());
+                        errorMessage.append("\n");
+                    }
                 }
-                if (errorMessage.length() > 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, errorMessage.toString());
-                    alert.showAndWait();
-                    return false;
-                }
-                break;
         }
-        return false;
+        return true;
     }
 
     private void clearFields() {
+
         txtSaleIdLand.clear();
         txtDateLand.clear();
         txtSoldPriceLand.clear();

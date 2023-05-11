@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import testing.TestData;
 
 /**
  * FXML Controller class
@@ -83,6 +84,15 @@ public class MainMenuController implements Initializable {
         } catch(Exception e) {
             System.out.println(e);
             //TODO joptionpane
+        }
+    }
+
+    @FXML private void handleMakeSampleDataButton() {
+        try {
+            TestData.makeSampleData();
+            Utils.Text.showConfirmation("Successfully made sample data");
+        } catch (Exception e) {
+            Utils.Text.showError(e.getMessage());
         }
     }
 

@@ -18,6 +18,7 @@
                   <Button mnemonicParsing="false" onAction="#switchToSearchSale" prefWidth="125.0" text="Search Sale" />
                   <Button mnemonicParsing="false" onAction="#switchToCalculateAverage" prefWidth="125.0" text="Calculate Average" />
                   <Button mnemonicParsing="false" onAction="#handleClearDataButton" prefWidth="125.0" text="Clear Data" />
+                  <Button mnemonicParsing="false" onAction="#handleMakeSampleDataButton" text="Make sample data" />
                   <Button mnemonicParsing="false" onAction="#handleExitButton" prefWidth="125.0" text="Exit" />
                </children>
             </VBox>

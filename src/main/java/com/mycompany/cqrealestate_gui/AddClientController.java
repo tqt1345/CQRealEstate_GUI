@@ -184,7 +184,4 @@ public class AddClientController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
-
-
-    
 }

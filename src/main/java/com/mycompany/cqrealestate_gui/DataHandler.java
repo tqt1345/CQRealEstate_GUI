@@ -26,8 +26,7 @@ public class DataHandler {
 
             output.close();
         } catch (Exception e) {
-            // TODO JOptionPane error message
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error saving data\n" + e.getMessage());
         }
     }
 
@@ -45,10 +44,8 @@ public class DataHandler {
 
             file.close();
             input.close();
-            System.out.println("loaded");
         } catch (Exception e) {
-            // TODO JOptionPane error message
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error loading data\n" + e.getMessage());
         }
     }
 

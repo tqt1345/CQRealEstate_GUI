@@ -1,7 +1,5 @@
 package com.mycompany.cqrealestate_gui;
-
 import javafx.scene.control.Alert;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,13 +11,13 @@ public class Utils {
             return ("*" + "~".repeat(count) + "*");
         }
 
-        public static void showConfirmation(String input) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, input);
+        public static void showConfirmation(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message);
             alert.showAndWait();
         }
 
-        public static void showError(String input) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, input);
+        public static void showError(String message) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, message);
             alert.showAndWait();
         }
     }
@@ -67,28 +65,5 @@ public class Utils {
             }
         }
     }
-    // End of Validator class
-
-
-    /*
-    public static class FileHandler {
-        public static void writeLandToFile(Land land) {
-            // TODO
-            try {
-                File file = new File("land.txt"); // Change the file name and path as per your requirements
-                FileWriter writer = new FileWriter(file, true);
-                writer.write(land.toString() + "\n");
-                writer.close();
-            } catch (Exception e) {
-
-                System.out.println(e.getMessage());
-            }
-        }
-
-        public static void writeHouseAndLandToFile(HouseAndLand houseAndLand) {
-            // TODO
-        }
-    }
-     */
 
 }

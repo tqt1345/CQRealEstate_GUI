@@ -6,10 +6,9 @@ package com.mycompany.cqrealestate_gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -19,13 +18,9 @@ import java.util.ResourceBundle;
  */
 public class AddClientController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
+    // Text Field arrays
+    private TextField[] BUYER_FIELDS;
+    private TextField[] SELLER_FIELDS;
 
     // Text Fields for Buyer objects
     @FXML private TextField txtBuyerID;
@@ -41,6 +36,13 @@ public class AddClientController implements Initializable {
     @FXML private TextField txtSellerAddress;
     @FXML private TextField txtSellerPhoneNumber;
 
+    StringBuilder errorMessage;
+
+    /**
+     * Initializes the controller class.
+     */
+
+
     // Handles submit button for buyer objects
     @FXML private void handleSubmitBuyerButton () {
         try {
@@ -49,6 +51,8 @@ public class AddClientController implements Initializable {
                 DataHandler.buyerList.add(buyer);
                 Utils.Text.showConfirmation("Buyer added successfully");
                 clearFields();
+            }else {
+                showError();
             }
         } catch (Exception e) {
             Utils.Text.showError("Error submitting buyer\n" + e.getMessage());
@@ -63,124 +67,182 @@ public class AddClientController implements Initializable {
                 DataHandler.sellerList.add(seller);
                 Utils.Text.showConfirmation("Seller added successfully");
                 clearFields();
+            } else {
+                showError();
             }
         } catch (Exception e) {
             Utils.Text.showError("Error submitting seller\n" + e.getMessage());
         }
     }
 
+    private boolean isValidInput(String type) {
+        boolean isValid = true;
+        switch (type) {
+            case "Buyer":
+                if(!buyerIsNotEmpty()) {
+                    isValid = false;
+                }
+                if(!isValidBuyerId()) {
+                    isValid = false;
+                }
+                if(!isValidBuyerName()) {
+                    isValid = false;
+                }
+                if(!isValidBuyerPhone()) {
+                    isValid = false;
+                }
+                break;
+            case "Seller":
+                if(!sellerIsNotEmpty()) {
+                    isValid = false;
+                }
+                if(!isValidSellerId()) {
+                    isValid = false;
+                }
+                if(!isValidSellerName()) {
+                    isValid = false;
+                }
+                if(!isValidSellerPhone()) {
+                    isValid = false;
+                }
+                break;
+        }
+        return isValid;
+    }
+
+    private boolean buyerIsNotEmpty() {
+        for (TextField field : BUYER_FIELDS) {
+            final String INPUT_FIELD = field.getText();
+            if (INPUT_FIELD.isEmpty()) {
+                errorMessage.append("All fields must be filled\n");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean sellerIsNotEmpty () {
+        for (TextField field : SELLER_FIELDS) {
+            final String INPUT_FIELD = field.getText();
+            if (INPUT_FIELD.isEmpty()) {
+                errorMessage.append("All fields must be filled\n");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidBuyerId() {
+
+        final String BUYER_ID = txtBuyerID.getText();
+        if (!Utils.Validator.isInteger(BUYER_ID)) {
+            errorMessage.append("Buyer ID must be an integer\n");
+            return false;
+        }
+
+        final int BUYER_ID_INT = Integer.parseInt(BUYER_ID);
+        for (Buyer buyer : DataHandler.buyerList) {
+            final int BUYER_ID_IN_LIST = buyer.getClientID();
+            if (BUYER_ID_IN_LIST == BUYER_ID_INT) {
+                errorMessage.append("Buyer ID already exists\n");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidSellerId() {
+
+        final String SELLER_ID = txtSellerID.getText();
+        if (!Utils.Validator.isInteger(SELLER_ID)) {
+            errorMessage.append("Seller ID must be an integer\n");
+            return false;
+        }
+
+        final int SELLER_ID_INT = Integer.parseInt(SELLER_ID);
+        for (Seller seller : DataHandler.sellerList) {
+            final int SELLER_ID_IN_LIST = seller.getClientID();
+            if (SELLER_ID_IN_LIST == SELLER_ID_INT) {
+                errorMessage.append("Seller ID already exists\n");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValidBuyerName() {
+        final String BUYER_FIRST_NAME = txtBuyerFirstName.getText();
+        if (!Utils.Validator.isName(BUYER_FIRST_NAME)) {
+            errorMessage.append("Name must have letters only\n");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidSellerName() {
+        final String SELLER_FIRST_NAME = txtSellerFirstName.getText();
+        if (!Utils.Validator.isName(SELLER_FIRST_NAME)) {
+            errorMessage.append("Name must have letters only\n");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidBuyerPhone() {
+        final String BUYER_PHONE_NUMBER = txtBuyerPhoneNumber.getText();
+        if (!Utils.Validator.isPhoneNumber(BUYER_PHONE_NUMBER)) {
+            errorMessage.append("Phone number must be an 8 digit number\n");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValidSellerPhone() {
+        final String SELLER_PHONE_NUMBER = txtSellerPhoneNumber.getText();
+        if (!Utils.Validator.isPhoneNumber(SELLER_PHONE_NUMBER)) {
+            errorMessage.append("Phone number must be an 8 digit number\n");
+            return false;
+        }
+        return true;
+    }
+
     // Creates a new buyer object
     private Buyer makeBuyer() {
-        int buyerID = Integer.parseInt(txtBuyerID.getText());
-        String firstName = txtBuyerFirstName.getText();
-        String lastName = txtBuyerLastName.getText();
-        String address = txtBuyerAddress.getText();
-        String phoneNumber = txtBuyerPhoneNumber.getText();
+        final int BUYER_ID = Integer.parseInt(txtBuyerID.getText());
+        final String BUYER_FIRST_NAME = txtBuyerFirstName.getText();
+        final String BUYER_LAST_NAME = txtBuyerLastName.getText();
+        final String BUYER_ADDRESS = txtBuyerAddress.getText();
+        final String BUYER_PHONE_NUMBER = txtBuyerPhoneNumber.getText();
 
-        return new Buyer(buyerID,firstName, lastName, address, phoneNumber);
+        return new Buyer(BUYER_ID, BUYER_FIRST_NAME, BUYER_LAST_NAME, BUYER_ADDRESS, BUYER_PHONE_NUMBER);
     }
 
     // Creates a new seller object
     private Seller makeSeller() {
-        int sellerID = Integer.parseInt(txtSellerID.getText());
-        String firstName = txtSellerFirstName.getText();
-        String lastName = txtSellerLastName.getText();
-        String address = txtSellerAddress.getText();
-        String phoneNumber = txtSellerPhoneNumber.getText();
+        final int SELLER_ID = Integer.parseInt(txtSellerID.getText());
+        final String SELLER_FIRST_NAME = txtSellerFirstName.getText();
+        final String SELLER_LAST_NAME = txtSellerLastName.getText();
+        final String SELLER_ADDRESS = txtSellerAddress.getText();
+        final String SELLER_PHONE_NUMBER = txtSellerPhoneNumber.getText();
 
-        return new Seller(sellerID,firstName, lastName, address, phoneNumber);
-    }
-
-    // Checks if textFields are valid depending on the type of client
-    private boolean isValidInput(String type) {
-        try {
-            StringBuilder errorMessage = new StringBuilder(); // Holds error messages
-            switch (type) {
-                case "Buyer":
-                    if (    // Checks if any fields are empty
-                            txtBuyerID.getText().isEmpty() ||
-                            txtBuyerFirstName.getText().isEmpty() ||
-                            txtBuyerLastName.getText().isEmpty() ||
-                            txtBuyerAddress.getText().isEmpty() ||
-                            txtBuyerPhoneNumber.getText().isEmpty()) {
-                            errorMessage.append("Please fill in all fields\n");
-                    }
-
-                    // Checks of inputted buyer id is an integer
-                    if (!Utils.Validator.isInteger(txtBuyerID.getText())) {
-                        errorMessage.append("Buyer ID must be an integer\n");
-                    } else { // if it is an integer, checks if it already exists
-                        for (Buyer buyer : DataHandler.buyerList) {
-                            if ((buyer.getClientID() == Integer.parseInt(txtBuyerID.getText()))) {
-                                errorMessage.append("Buyer ID already exists\n");
-                            }
-                        }
-                    }
-
-                    // Checks if inputted name is correct
-                    if (!Utils.Validator.isName(txtBuyerFirstName.getText())) {
-                        errorMessage.append("Invalid name. Letters only\n");
-                    }
-
-                    // Checks if inputted phone number is correct
-                    if (!Utils.Validator.isPhoneNumber(txtBuyerPhoneNumber.getText())) {
-                        errorMessage.append("Invalid phone number. 8 digit number only\n");
-                    }
-
-                    // If any error messages are stored, display them and return false
-                    if (errorMessage.length() > 0) {
-                        Utils.Text.showError(errorMessage.toString());
-                        return false;
-                    }
-                    break;
-                case "Seller":
-                    // Same as Buyer but for seller objects
-                    if (    txtSellerID.getText().isEmpty() ||
-                            txtSellerFirstName.getText().isEmpty() ||
-                            txtSellerLastName.getText().isEmpty() ||
-                            txtSellerAddress.getText().isEmpty() ||
-                            txtSellerPhoneNumber.getText().isEmpty()) {
-                            errorMessage.append("Please fill in all fields\n");
-                    }
-                    if (!Utils.Validator.isInteger(txtSellerID.getText())) {
-                        errorMessage.append("Seller ID must be an integer\n");
-                    } else {
-                        for (Seller seller : DataHandler.sellerList) {
-                            if ((seller.getClientID() == Integer.parseInt(txtSellerID.getText()))) {
-                                errorMessage.append("Seller ID already exists\n");
-                            }
-                        }
-                    }
-                    if (!Utils.Validator.isName(txtSellerFirstName.getText())) {
-                        errorMessage.append("Invalid name. Letters only\n");
-                    }
-                    if (!Utils.Validator.isPhoneNumber(txtSellerPhoneNumber.getText())) {
-                        errorMessage.append("Invalid phone number. 8 digit number only\n");
-                    }
-                    if (errorMessage.length() > 0) {
-                        Utils.Text.showError(errorMessage.toString());
-                        return false;
-                    }
-                    break;
-            }
-        }catch (Exception e) {
-            Utils.Text.showError("Error validating input\n" + e.getMessage());
-        }
-
-        return true;
+        return new Seller(SELLER_ID,SELLER_FIRST_NAME, SELLER_LAST_NAME, SELLER_ADDRESS, SELLER_PHONE_NUMBER);
     }
 
     // Clear all the text fields
     private void clearFields() {
+        clearBuyerFields();
+        clearSellerFields();
+    }
 
-        // Clear Buyer text fields
+    private void clearBuyerFields() {
         txtBuyerID.clear();
         txtBuyerFirstName.clear();
         txtBuyerLastName.clear();
         txtBuyerAddress.clear();
         txtBuyerPhoneNumber.clear();
+    }
 
-        // Clear Seller text fields
+    private void clearSellerFields() {
         txtSellerID.clear();
         txtSellerFirstName.clear();
         txtSellerLastName.clear();
@@ -188,6 +250,15 @@ public class AddClientController implements Initializable {
         txtSellerPhoneNumber.clear();
     }
 
+    // Clear the error message
+    private void clearError() {
+        errorMessage = new StringBuilder();
+    }
+
+    private void showError() {
+        Utils.Text.showError(errorMessage.toString());
+        clearError();
+    }
     // Switch to main menu
     public void switchToMainMenu() {
         try {
@@ -196,4 +267,12 @@ public class AddClientController implements Initializable {
             Utils.Text.showError("Error switching to main menu\n" + e.getMessage());
         }
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        BUYER_FIELDS = new TextField[]{txtBuyerID, txtBuyerFirstName, txtBuyerLastName, txtBuyerAddress, txtBuyerPhoneNumber};
+        SELLER_FIELDS = new TextField[]{txtSellerID, txtSellerFirstName, txtSellerLastName, txtSellerAddress, txtSellerPhoneNumber};
+        errorMessage = new StringBuilder();
+    }
+
 }

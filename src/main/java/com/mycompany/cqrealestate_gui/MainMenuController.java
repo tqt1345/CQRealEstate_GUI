@@ -74,9 +74,11 @@ public class MainMenuController implements Initializable {
             if (DataHandler.saleList.isEmpty()) {
                 Utils.Text.showError("Can't calculate average, no sale records");
             } else {
+
                 double sum = 0;
                 double average = 0;
                 int count = DataHandler.saleList.size();
+
                 for (Sale sale : DataHandler.saleList) {
                     sum += sale.getSoldPrice();
                 }

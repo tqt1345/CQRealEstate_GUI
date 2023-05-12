@@ -4,16 +4,12 @@
  */
 package com.mycompany.cqrealestate_gui;
 
-import java.lang.reflect.Array;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -46,6 +42,7 @@ public class AddSaleController implements Initializable {
     @FXML private TextField txtSellerIdHouseAndLand;
 
 
+    // Handles the submit button for sale objects with Land
     @FXML private void handleSubmitLandSaleButton () {
         try {
             if(isValidInput("Land")) {
@@ -62,6 +59,7 @@ public class AddSaleController implements Initializable {
         }
     }
 
+    // Handles the submit button for sale objects with houseAndLand
     @FXML private void handleSubmitHouseAndLandSaleButton () {
         try {
             if(isValidInput("HouseAndLand")) {
@@ -77,6 +75,8 @@ public class AddSaleController implements Initializable {
             Utils.Text.showError(e.getMessage());
         }
     }
+
+    // Makes a sale object depending on if it is Land or HouseAndLand
     private Sale makeSale(String type){
         switch (type) {
             case "Land":
@@ -107,6 +107,7 @@ public class AddSaleController implements Initializable {
         return null;
     }
 
+    // Gets the land object specified from input in textField
     private Land getLand(String Id) {
         for (Land land : DataHandler.landList) {
             if (land.getPropertyId() == Integer.parseInt(Id)) {
@@ -116,6 +117,7 @@ public class AddSaleController implements Initializable {
         return null;
     }
 
+    // Gets the HouseAndLand object specified from textField
     private HouseAndLand getHouseAndLand(String Id) {
         for (HouseAndLand houseAndLand : DataHandler.houseAndLandList) {
             if (houseAndLand.getPropertyId() == Integer.parseInt(Id)) {
@@ -125,6 +127,7 @@ public class AddSaleController implements Initializable {
         return null;
     }
 
+    // Gets Seller object specified from textField
     private Seller getSeller(String Id) {
 
         for (Seller seller : DataHandler.sellerList) {
@@ -135,6 +138,7 @@ public class AddSaleController implements Initializable {
         return null;
     }
 
+    // Gets Buyer object specified from textField
     private Buyer getBuyer(String Id) {
         for (Buyer buyer : DataHandler.buyerList) {
             if (buyer.getClientID() == Integer.parseInt(Id)) {
@@ -145,11 +149,13 @@ public class AddSaleController implements Initializable {
     }
 
 
+    // Checks if text fields are valid depending on type
     private boolean isValidInput(String type) {
         StringBuilder errorMessage = new StringBuilder();
         switch (type) {
             case "Land":
-                if (    txtSaleIdLand.getText().isEmpty() ||
+                if (    // Checks if fields are empty
+                        txtSaleIdLand.getText().isEmpty() ||
                         txtDateLand.getText().isEmpty() ||
                         txtSoldPriceLand.getText().isEmpty() ||
                         txtLandIdLand.getText().isEmpty() ||
@@ -157,30 +163,41 @@ public class AddSaleController implements Initializable {
                         txtSellerIdLand.getText().isEmpty()) {
                         errorMessage.append("All fields must be filled.\n");
                 }
+
+
+                // Checks if sale id is an int
                 if (!Utils.Validator.isInteger(txtSaleIdLand.getText())) {
                     errorMessage.append("Sale ID must be an integer\n");
-                } else {
+                } else { // if int, check if it exists already
                     for (Sale sale : DataHandler.saleList) {
                         if (sale.getSaleID() == Integer.parseInt(txtSaleIdLand.getText())) {
                             errorMessage.append("Sale ID already exists\n");
                         }
                     }
                 }
+
+                // checks if date is valid
                 if (!Utils.Validator.isDate(txtDateLand.getText())) {
                     errorMessage.append("Invalid date, must be in the format: (dd/mm/yyyy)\n");
                 }
+
+                // checks if sold price is a double
                 if (!Utils.Validator.isDouble(txtSoldPriceLand.getText())) {
                     errorMessage.append("Sold price must be a double\n");
                 }
+
+                // checks if land id is an int
                 if (!Utils.Validator.isInteger(txtLandIdLand.getText())) {
                     errorMessage.append("Land ID must be an integer\n");
-                } else {
+                } else { // if int, checks if there are any land objects with that id
                     boolean landExists = false;
                     for (Land land : DataHandler.landList) {
                         if (land.getPropertyId() == Integer.parseInt(txtLandIdLand.getText())) {
                             landExists = true;
                         }
                     }
+
+                    // No land entries exist with inputted id
                     if (!landExists) {
                         errorMessage.append("No Land entry with ID: ");
                         errorMessage.append(txtLandIdLand.getText());
@@ -188,15 +205,18 @@ public class AddSaleController implements Initializable {
                     }
                 }
 
+                // Checks if buyer id is an int
                 if (!Utils.Validator.isInteger(txtBuyerIdLand.getText())) {
                     errorMessage.append("Buyer ID must be an integer\n");
-                } else {
+                } else { // if int, checks if any buyer object has that id
                     boolean buyerExists = false;
                     for (Buyer buyer : DataHandler.buyerList) {
                         if (buyer.getClientID() == Integer.parseInt(txtBuyerIdLand.getText())) {
                             buyerExists = true;
                         }
                     }
+
+                    // no buyer with inputted id
                     if (!buyerExists) {
                         errorMessage.append("No Buyer entry with ID: ");
                         errorMessage.append(txtBuyerIdLand.getText());
@@ -204,15 +224,18 @@ public class AddSaleController implements Initializable {
                     }
                 }
 
+                // Checks if seller id is an int
                 if (!Utils.Validator.isInteger(txtSellerIdLand.getText())) {
                     errorMessage.append("Seller ID must be an integer\n");
-                } else {
+                } else { // if int, checks if any seller object has that id
                     boolean sellerExists = false;
                     for (Seller seller : DataHandler.sellerList) {
                         if (seller.getClientID() == Integer.parseInt(txtSellerIdLand.getText())) {
                             sellerExists = true;
                         }
                     }
+
+                    // no seller with inputted id
                     if (!sellerExists) {
                         errorMessage.append("No Seller entry with ID: ");
                         errorMessage.append(txtSellerIdLand.getText());
@@ -220,13 +243,14 @@ public class AddSaleController implements Initializable {
                     }
                 }
 
+                // If there are any errors, show them
                 if (errorMessage.length() > 0) {
                     Utils.Text.showError(errorMessage.toString());
                     return false;
                 }
                 break;
 
-            case "HouseAndLand":
+            case "HouseAndLand": // Similar to previous case
                 if (    txtSaleIdHouseAndLand.getText().isEmpty() ||
                         txtDateHouseAndLand.getText().isEmpty() ||
                         txtSoldPriceHouseAndLand.getText().isEmpty() ||
@@ -305,8 +329,10 @@ public class AddSaleController implements Initializable {
         return true;
     }
 
+    // Clears all fields
     private void clearFields() {
 
+        // Clears fields for land sales
         txtSaleIdLand.clear();
         txtDateLand.clear();
         txtSoldPriceLand.clear();
@@ -314,6 +340,7 @@ public class AddSaleController implements Initializable {
         txtBuyerIdLand.clear();
         txtSellerIdLand.clear();
 
+        // Clears fields for house and land sales
         txtSaleIdHouseAndLand.clear();
         txtDateHouseAndLand.clear();
         txtSoldPriceHouseAndLand.clear();
@@ -322,6 +349,7 @@ public class AddSaleController implements Initializable {
         txtSellerIdHouseAndLand.clear();
     }
 
+    // Switches to main menu
     @FXML private void switchToMainMenu() {
         try {
             App.setRoot("mainMenu");

@@ -4,15 +4,12 @@
  */
 package com.mycompany.cqrealestate_gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -44,11 +41,9 @@ public class AddPropertyController implements Initializable {
     @FXML private TextField txtBedroomsHouse;
     @FXML private TextField txtToiletsHouse;
 
-    // Buttons
-    @FXML private Button submitButton;
 
-    @FXML
-    private void handleLandSubmitButton (ActionEvent event) {
+    // Handles the submit button for land objects
+    @FXML private void handleLandSubmitButton () {
         try {
             if (isValidInput("land")) { // If all input is valid, will run.
                 // Make land object from input
@@ -67,9 +62,10 @@ public class AddPropertyController implements Initializable {
         }
     }
 
-    @FXML private void handleHouseAndLandSubmitButton (ActionEvent event) {
+    // Handles the submit button for houseAndLand objects
+    @FXML private void handleHouseAndLandSubmitButton () {
         try {
-            if (isValidInput("houseAndLand")) {
+            if (isValidInput("houseAndLand")) { // If all input is valid, will run.
                 // Make house and land object from input
                 HouseAndLand houseAndLand = makeHouseAndLand();
 
@@ -85,6 +81,7 @@ public class AddPropertyController implements Initializable {
         }
     }
 
+    // Makes land objects
     private Land makeLand() {
         int landId = Integer.parseInt(txtLandId.getText());
         int lotNumber = Integer.parseInt(txtLotNumberLand.getText());
@@ -93,6 +90,7 @@ public class AddPropertyController implements Initializable {
         return new Land(landId, lotNumber, address, landArea);
     }
 
+    // Makes houseAndLand objects
     private HouseAndLand makeHouseAndLand() {
         int houseAndLandId = Integer.parseInt(txtHouseAndLandId.getText());
         int lotNumber = Integer.parseInt(txtLotNumberHouse.getText());
@@ -104,21 +102,24 @@ public class AddPropertyController implements Initializable {
         return new HouseAndLand(houseAndLandId, lotNumber, address, landArea, constructedArea, bedrooms, toilets);
     }
 
+    // Checks if text fields are valid depending on type
     private boolean isValidInput (String type) {
         try {
             StringBuilder errorMessage = new StringBuilder();
             switch (type) {
                 case "land":
-                    if (    txtLandId.getText().isEmpty() ||
+                    if (    // Checks if fields are empty
+                            txtLandId.getText().isEmpty() ||
                             txtLotNumberLand.getText().isEmpty() ||
                             txtAddressLand.getText().isEmpty() ||
                             txtLandAreaLand.getText().isEmpty()) {
-
-                        errorMessage.append("All fields must be filled\n");
+                            errorMessage.append("All fields must be filled\n");
                     }
+
+                    // Checks if id is an int
                     if (!Utils.Validator.isInteger(txtLandId.getText())) {
                         errorMessage.append("Land ID must be an integer\n");
-                    } else {
+                    } else { // if int, checks if it exists already
                         for (Land land : DataHandler.landList) {
                             if (land.getPropertyId() == Integer.parseInt(txtLandId.getText())) {
                                 errorMessage.append("Land ID already exists\n");
@@ -127,18 +128,23 @@ public class AddPropertyController implements Initializable {
                         }
                     }
 
+                    // Checks if lot number is an int
                     if (!Utils.Validator.isInteger(txtLotNumberLand.getText())) {
                         errorMessage.append("Lot number must be an integer\n");
                     }
+
+                    // Checks if land area is a double
                     if (!Utils.Validator.isDouble(txtLandAreaLand.getText())) {
                         errorMessage.append("Land area must be a double\n");
                     }
+
+                    // Shows error messages if any and returns false
                     if (errorMessage.length() > 0) {
                         Utils.Text.showError(errorMessage.toString());
                         return false;
                     }
                     break;
-                case "houseAndLand":
+                case "houseAndLand": // Similar to Land case
                     if (    txtHouseAndLandId.getText().isEmpty() ||
                             txtLotNumberHouse.getText().isEmpty() ||
                             txtAddressHouse.getText().isEmpty() ||
@@ -159,6 +165,7 @@ public class AddPropertyController implements Initializable {
                             }
                         }
                     }
+
                     if (!Utils.Validator.isInteger(txtLotNumberHouse.getText())) {
                         errorMessage.append("Lot number must be an integer\n");
                     }
@@ -187,6 +194,8 @@ public class AddPropertyController implements Initializable {
 
         return true;
     }
+
+    // Clears all text fields
     private void clearFields() {
         // Clearing Land fields
         txtLandId.clear();
@@ -203,6 +212,8 @@ public class AddPropertyController implements Initializable {
         txtBedroomsHouse.clear();
         txtToiletsHouse.clear();
     }
+
+    // Switches to the main menu
     @FXML private void switchToMainMenu() throws Exception {
         try {
             App.setRoot("mainMenu");

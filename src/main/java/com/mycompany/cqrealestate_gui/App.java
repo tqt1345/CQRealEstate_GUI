@@ -1,3 +1,12 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for starting and stopping the program
+ */
+
 package com.mycompany.cqrealestate_gui;
 
 import javafx.application.Application;

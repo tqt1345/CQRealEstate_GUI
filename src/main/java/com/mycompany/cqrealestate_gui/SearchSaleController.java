@@ -1,15 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for searching through sale records
  */
 package com.mycompany.cqrealestate_gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -28,9 +30,10 @@ public class SearchSaleController implements Initializable {
         // TODO
     }
 
-    @FXML TextArea txtSaleRecords;
-    @FXML TextField txtSaleId;
+    @FXML TextArea txtSaleRecords; // Text area for showing sale info
+    @FXML TextField txtSaleId;     // text field for entering sale id
 
+    // Handles button for searching sale
     @FXML private void handleSearchButton() {
         try {
             if (isValidInput()) {
@@ -40,6 +43,8 @@ public class SearchSaleController implements Initializable {
             Utils.Text.showError("Error while searching\n" + e.getMessage());
         }
     }
+
+    // Searches for sale based on id
     private void searchSale(String saleID) {
         txtSaleRecords.clear();
 
@@ -49,6 +54,8 @@ public class SearchSaleController implements Initializable {
             }
         }
     }
+
+    // Validates input
     private boolean isValidInput () {
         try {
             StringBuilder errorMessage = new StringBuilder();
@@ -78,6 +85,8 @@ public class SearchSaleController implements Initializable {
         }
         return true;
     }
+
+    // Switches to main menu
     public void switchToMainMenu() throws Exception {
         try {
             App.setRoot("mainMenu");

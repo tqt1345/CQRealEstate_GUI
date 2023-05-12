@@ -1,10 +1,19 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for various Utility methods and classes
+ */
+
 package com.mycompany.cqrealestate_gui;
 import javafx.scene.control.Alert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Utils {
-    public static class Text {
+    public static class Text { // Various text and alert methods
 
         // Prints a separator line
         public static String separator(int count) {
@@ -22,7 +31,7 @@ public class Utils {
         }
     }
 
-    public static class Validator {
+    public static class Validator { // Various validation methods
 
         // Checks if input is an int
         public static boolean isInteger(String input) {

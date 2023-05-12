@@ -1,3 +1,12 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for handling all data in program
+ */
+
 package com.mycompany.cqrealestate_gui;
 
 import java.io.*;
@@ -49,6 +58,7 @@ public class DataHandler {
         }
     }
 
+    // Clears all data
     public static void clearData() {
         landList.clear();
         houseAndLandList .clear();

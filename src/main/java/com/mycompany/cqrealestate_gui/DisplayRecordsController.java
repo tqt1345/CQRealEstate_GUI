@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for displaying records
  */
 package com.mycompany.cqrealestate_gui;
 
@@ -27,15 +31,15 @@ public class DisplayRecordsController implements Initializable {
         // TODO
     }    
 
+    // Text areas for displaying toString info of objects
     @FXML private TextArea landRecords;
     @FXML private TextArea houseAndLandRecords;
     @FXML private TextArea buyerRecords;
     @FXML private TextArea sellerRecords;
-    @FXML private TextArea saleRecords;
 
 
-    @FXML
-    private void switchToMainMenu() throws Exception {
+    // Handles button for switching to main menu
+    @FXML private void switchToMainMenu() throws Exception {
         try {
             App.setRoot("mainMenu");
         } catch (Exception e) {
@@ -43,31 +47,27 @@ public class DisplayRecordsController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleDisplayLandRecordsButton() {
+    // Handles button for displaying land records
+    @FXML private void handleDisplayLandRecordsButton() {
         manageRecords(DataHandler.landList, landRecords);
     }
-    @FXML
-    private void handleDisplayHouseAndLandRecordsButton() {
+
+    // Handles button for displaying houseAndLand records
+    @FXML private void handleDisplayHouseAndLandRecordsButton() {
         manageRecords(DataHandler.houseAndLandList, houseAndLandRecords);
     }
 
-    @FXML
-    private void handleDisplayBuyerRecordsButton() {
+    // Handles button for displaying buyer records
+    @FXML private void handleDisplayBuyerRecordsButton() {
         manageRecords(DataHandler.buyerList, buyerRecords);
     }
 
-    @FXML
-    private void handleDisplaySellerRecordsButton() {
+    // Handles button for displaying seller records
+    @FXML private void handleDisplaySellerRecordsButton() {
         manageRecords(DataHandler.sellerList, sellerRecords);
     }
 
-    @FXML
-    private void handleDisplaySaleRecordsButton() {
-        manageRecords(DataHandler.saleList, saleRecords);
-    }
-
-    // Generic method appends toString of a specific object list to records TextArea
+    // Appends toString of a specific object list to records TextArea
     private void manageRecords(ArrayList<?> list, TextArea records) {
         records.clear();
         try {
@@ -81,7 +81,7 @@ public class DisplayRecordsController implements Initializable {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+                Utils.Text.showError("Error displaying records\n" + e.getMessage());
         }
     }
 }

@@ -1,6 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls functionality for the main menu
  */
 package com.mycompany.cqrealestate_gui;
 
@@ -29,46 +33,52 @@ public class MainMenuController implements Initializable {
         return;
     }
 
+    // Switch to addProperty
     @FXML private void switchToAddProperty() {
         try {
             App.setRoot("addProperty");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error while switching to add property\n" + e.getMessage());
         }
     }
 
+    // Switch to addClient
     @FXML private void switchToAddClient() {
         try {
             App.setRoot("addClient");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error while switching to add client\n" + e.getMessage());
         }
     }
 
+    // Switch to addSale
     @FXML private void switchToAddSale() {
         try {
             App.setRoot("addSale");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error while switching to add sale\n" + e.getMessage());
         }
     }
 
+    // Switch to displayRecords
     @FXML private void switchToDisplayRecords() {
         try {
             App.setRoot("displayRecords");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error while switching to display records\n" + e.getMessage());
         }
     }
 
+    // Switch to searchSale
     @FXML private void switchToSearchSale() {
         try {
             App.setRoot("searchSale");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Utils.Text.showError("Error while switching to search sale\n" + e.getMessage());
         }
     }
 
+    // Calculates average price of all sales
     @FXML private void handleCalculateAverageButton() {
         try {
             if (DataHandler.saleList.isEmpty()) {
@@ -91,17 +101,18 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    // Clears data
     @FXML private void handleClearDataButton(ActionEvent event) {
         try {
             DataHandler.clearData();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully cleared data");
             alert.showAndWait();
         } catch(Exception e) {
-            System.out.println(e);
-            //TODO joptionpane
+            Utils.Text.showError("Error clearing data\n" + e.getMessage());
         }
     }
 
+    // Makes sample test data
     @FXML private void handleMakeSampleDataButton() {
         try {
             TestData.makeSampleData();
@@ -111,6 +122,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    // Exits program
     @FXML private void handleExitButton() {
         App.exit();
     }

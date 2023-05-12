@@ -1,3 +1,12 @@
+/*
+Programmer: Tarique Turnbull
+StudentID: 12177936
+Course: COIT11134 Object-Oriented Programming
+Assessment: Practical Assessment 2
+
+This class controls information for Buyer objects
+ */
+
 package com.mycompany.cqrealestate_gui;
 
 public class Buyer extends Client {

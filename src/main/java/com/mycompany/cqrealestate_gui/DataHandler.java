@@ -73,6 +73,18 @@ public class DataHandler {
         return null;
     }
 
+    public static void saleInfo() {
+        final int SIZE = saleList.size();
+        if (SIZE > 0) {
+            final int LATEST_SALE = SIZE - 1;
+            Utils.Text.showConfirmation("Latest sale details:\n" + saleList.get(LATEST_SALE).toString());
+        }
+        else {
+            Utils.Text.showConfirmation("No sales have been made");
+        }
+
+    }
+
     // Clears all data
     public static void clearData() {
         landList.clear();

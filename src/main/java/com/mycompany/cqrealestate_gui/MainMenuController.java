@@ -29,7 +29,6 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        return;
     }
 
     // Switch to addProperty
@@ -104,8 +103,7 @@ public class MainMenuController implements Initializable {
     @FXML private void handleClearDataButton(ActionEvent event) {
         try {
             DataHandler.clearData();
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully cleared data");
-            alert.showAndWait();
+            Utils.Text.showConfirmation("Successfully cleared data");
         } catch(Exception e) {
             Utils.Text.showError("Error clearing data\n" + e.getMessage());
         }

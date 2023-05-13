@@ -52,5 +52,4 @@ public class HouseAndLand extends Land {
                 + "\nBedrooms: " + bedrooms
                 + "\nToilets: " + toilets;
     }
-
 }

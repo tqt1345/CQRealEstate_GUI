@@ -27,18 +27,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Load data
-        DataHandler.loadData();
+        try {
+            // Load data
+            DataHandler.loadData();
+            DataHandler.saleInfo();
 
-        // Set GUI elements
-        scene = new Scene(loadFXML("mainMenu"));
-        stage.setScene(scene);
-        stage.show();
+            // Set GUI elements
+            scene = new Scene(loadFXML("mainMenu"));
+            stage.setScene(scene);
+            stage.show();
 
-        // Saves all data when program is closed
-        stage.setOnCloseRequest(windowEvent -> {
-            exit();
-        });
+            // Saves all data when program is closed
+            stage.setOnCloseRequest(windowEvent -> {
+                exit();
+            });
+        } catch (Exception e) {
+            Utils.Text.showError("Error while starting program\n" + e.getMessage());
+        }
     }
 
 

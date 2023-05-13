@@ -237,7 +237,8 @@ public class AddPropertyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         LAND_FIELDS = new TextField[]{txtLandId, txtLotNumberLand, txtAddressLand, txtLandAreaLand};
-        HOUSE_AND_LAND_FIELDS = new TextField[]{txtHouseAndLandId, txtLotNumberHouse, txtAddressHouse, txtLandAreaHouse, txtConstructedAreaHouse, txtBedroomsHouse, txtToiletsHouse};
+        HOUSE_AND_LAND_FIELDS = new TextField[]{txtHouseAndLandId, txtLotNumberHouse, txtAddressHouse, txtLandAreaHouse,
+                txtConstructedAreaHouse, txtBedroomsHouse, txtToiletsHouse};
         errorMessage = new StringBuilder();
     }
 }

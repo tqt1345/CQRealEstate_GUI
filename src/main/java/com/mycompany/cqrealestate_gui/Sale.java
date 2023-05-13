@@ -16,7 +16,7 @@ public class Sale implements Serializable, Identifier {
 
     // Sale attributes
     private int saleID;
-    private final String type = "Sale";
+    private static final String type = "Sale";
     private String date;
     private double soldPrice;
     private Land property;
@@ -37,7 +37,7 @@ public class Sale implements Serializable, Identifier {
 
     // Getters
     public int getId() {return saleID;}
-    public String getType() {return this.type;}
+    public String getType() {return type;}
     public String getDate() {return date;}
     public double getSoldPrice() {return soldPrice;}
     public Land getProperty() {return property;}

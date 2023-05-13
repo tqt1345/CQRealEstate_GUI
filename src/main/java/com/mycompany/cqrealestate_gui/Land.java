@@ -15,7 +15,7 @@ public class Land implements Serializable,Identifier {
 
     // Land attributes
     private int propertyId;
-    private String type = "Land";
+    private static final String type = "Land";
     private int lotNumber;
     private String address;
     private double landArea;
@@ -26,12 +26,11 @@ public class Land implements Serializable,Identifier {
         this.lotNumber = lotNumber;
         this.address = address;
         this.landArea = landArea;
-        this.type = type;
     }
 
     // Getters
     public int getId() {return propertyId;}
-    public String getType() {return this.type;}
+    public String getType() {return type;}
     public int getLotNumber() {return lotNumber;}
     public String getAddress() {return address;}
     public double getLandArea() {return landArea;}

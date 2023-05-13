@@ -83,6 +83,7 @@ public class AddSaleController implements Initializable {
             return false;
         }
 
+        // Assign values to check
         final String SALE_ID = fields[0].getText();
         final String DATE = fields[1].getText();
         final String SOLD_PRICE = fields[2].getText();

@@ -75,6 +75,7 @@ public class AddClientController implements Initializable {
         }
     }
 
+    // Checks if input is valid
     private boolean isValidInput(TextField[] fields, List <? extends Client> clients) {
         boolean isValid = true;
         if (!Utils.Validator.isNotEmpty(fields)) {
@@ -82,6 +83,7 @@ public class AddClientController implements Initializable {
             return false;
         }
 
+        // Assign values to check
         final String ID = fields[0].getText();
         final String FIRST_NAME = fields[1].getText();
         final String LAST_NAME = fields[2].getText();

@@ -73,6 +73,7 @@ public class SearchSaleController implements Initializable {
         return isValid;
     }
 
+    // Shows sale record
     private void showSaleRecord(String id) {
         final String SALE_INFO = DataHandler.getObject(Integer.parseInt(id), DataHandler.saleList).toString();
         txtSaleRecords.setText(SALE_INFO);

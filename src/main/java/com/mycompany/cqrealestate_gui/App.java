@@ -30,7 +30,7 @@ public class App extends Application {
         try {
             // Load data
             DataHandler.loadData();
-            DataHandler.saleInfo();
+            DataHandler.saleInfo(); // Shows the latest sale info if any
 
             // Set GUI elements
             scene = new Scene(loadFXML("mainMenu"));

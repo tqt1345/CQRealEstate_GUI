@@ -82,6 +82,7 @@ public class AddPropertyController implements Initializable {
             return false;
         }
 
+        // Assign values to check
         final String ID = txtLandId.getText();
         final String LOT_NUMBER = txtLotNumberLand.getText();
         final String LAND_AREA = txtLandAreaLand.getText();
@@ -127,6 +128,8 @@ public class AddPropertyController implements Initializable {
             errorMessage.append("All fields must be filled\n");
             return false;
         }
+
+        // Assign values to check
         final String ID = txtHouseAndLandId.getText();
         final String LOT_NUMBER = txtLotNumberHouse.getText();
         final String LAND_AREA = txtLandAreaHouse.getText();

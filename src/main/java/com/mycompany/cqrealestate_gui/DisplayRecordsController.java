@@ -10,10 +10,12 @@ package com.mycompany.cqrealestate_gui;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+
 
 /**
  * FXML Controller class
@@ -27,7 +29,6 @@ public class DisplayRecordsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     // Text areas for displaying toString info of objects
@@ -67,16 +68,15 @@ public class DisplayRecordsController implements Initializable {
     }
 
     // Appends toString of a specific object list to records TextArea
-    private void manageRecords(ArrayList<?> list, TextArea records) {
+    private void manageRecords(List<?> list, TextArea records) {
         records.clear();
         try {
             if (list.isEmpty()) {
                 records.setText("No records found!");
             } else {
-                for (Object object : list) {
+                for (Object object : list) { // Append toString info of each object
                     records.appendText(object.toString());
-                    records.appendText("\n" + Utils.Text.separator(30) +
-                            "\n");
+                    records.appendText("\n" + Utils.Text.separator(30) + "\n");
                 }
             }
         } catch (Exception e) {

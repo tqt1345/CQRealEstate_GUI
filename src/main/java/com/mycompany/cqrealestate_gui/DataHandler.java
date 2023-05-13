@@ -59,7 +59,8 @@ public class DataHandler {
         }
     }
 
-    // Gets an object from an array. Anything that calls this must cast to appropriate object type
+    // Gets an object from an array based on inputted ID. Anything that calls this must cast to appropriate object type
+    // Can only get objects that implement the Identifier interface
     public static Object getObject (int id, List<? extends Identifier> objects) {
         try {
             for (Identifier object : objects) {
@@ -73,6 +74,7 @@ public class DataHandler {
         return null;
     }
 
+    // Shows the latest sale info if any
     public static void saleInfo() {
         final int SIZE = saleList.size();
         if (SIZE > 0) {

@@ -26,4 +26,6 @@ replay_pid*
 # Folders
 target
 .idea
-testing
+
+# Data
+ObjectData.ser

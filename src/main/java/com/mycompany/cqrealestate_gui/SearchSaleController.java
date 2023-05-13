@@ -27,36 +27,59 @@ public class SearchSaleController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        errorMessage = new StringBuilder();
+        fields = new TextField[]{txtSaleId};
     }
+
+    TextField[] fields;
 
     @FXML TextArea txtSaleRecords; // Text area for showing sale info
     @FXML TextField txtSaleId;     // text field for entering sale id
+
+
+    StringBuilder errorMessage;
 
     // Handles button for searching sale
     @FXML private void handleSearchButton() {
         try {
             if (isValidInput()) {
-                searchSale(txtSaleId.getText());
+                showSaleRecord(txtSaleId.getText());
+            } else {
+                Utils.Text.showError(errorMessage.toString());
+                errorMessage.setLength(0);
             }
-        } catch (Exception e) {
-            Utils.Text.showError("Error while searching\n" + e.getMessage());
+        }catch (Exception e) {
+            Utils.Text.showError("Error while searching sale\n" + e.getMessage());
         }
     }
 
-    // Searches for sale based on id
-    private void searchSale(String saleID) {
-        txtSaleRecords.clear();
+    // Checks for valid input
+    private boolean isValidInput() {
+        boolean isValid = true;
+        if (txtSaleId.getText().isEmpty()) {
+            errorMessage.append("Sale ID field cannot be empty\n");
+            isValid = false;
+        }
+        final String ID = txtSaleId.getText();
 
-        for (Sale sale : DataHandler.saleList) {
-            if (sale.getSaleID() == Integer.parseInt(saleID)) {
-                txtSaleRecords.setText(sale.toString());
+        if (!Utils.Validator.isInteger(ID)) {
+            errorMessage.append("Sale ID must be an integer\n");
+            isValid = false;
+        } else {
+            if (Utils.Validator.idExists(ID, DataHandler.saleList)) {
+                errorMessage.append("Sale ID does not exist\n");
+                isValid = false;
             }
         }
+        return isValid;
     }
 
-    // Validates input
-    private boolean isValidInput () {
+    private void showSaleRecord(String id) {
+        final String SALE_INFO = DataHandler.getObject(Integer.parseInt(id), DataHandler.saleList).toString();
+        txtSaleRecords.setText(SALE_INFO);
+    }
+    /*
+    private boolean isValidInputOld () {
         try {
             StringBuilder errorMessage = new StringBuilder();
             if (txtSaleId.getText().isEmpty()) {
@@ -67,7 +90,7 @@ public class SearchSaleController implements Initializable {
             } else {
                 boolean saleExist = false;
                 for (Sale sale : DataHandler.saleList) {
-                    if (sale.getSaleID() == Integer.parseInt(txtSaleId.getText())) {
+                    if (sale.getId() == Integer.parseInt(txtSaleId.getText())) {
                         saleExist = true;
                     }
                 }
@@ -85,6 +108,8 @@ public class SearchSaleController implements Initializable {
         }
         return true;
     }
+     */
+
 
     // Switches to main menu
     public void switchToMainMenu() throws Exception {

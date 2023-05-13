@@ -11,7 +11,7 @@ package com.mycompany.cqrealestate_gui;
 
 import java.io.Serializable;
 
-public class Land implements Serializable {
+public class Land implements Serializable,Identifier {
 
     // Land attributes
     private int propertyId;
@@ -30,7 +30,7 @@ public class Land implements Serializable {
     }
 
     // Getters
-    public int getPropertyId() {return propertyId;}
+    public int getId() {return propertyId;}
     public String getType() {return this.type;}
     public int getLotNumber() {return lotNumber;}
     public String getAddress() {return address;}

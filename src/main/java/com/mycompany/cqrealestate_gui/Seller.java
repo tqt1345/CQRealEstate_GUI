@@ -27,7 +27,7 @@ public class Seller extends Client {
     public void setClientType(String clientType) {this.clientType = clientType;}
 
     // Getters
-    public int getClientID() {return ClientID;}
+    public int getId() {return ClientID;}
     public String getClientType() {return this.clientType;}
 
     @Override

@@ -12,10 +12,11 @@ package com.mycompany.cqrealestate_gui;
 
 import java.io.Serializable;
 
-public class Sale implements Serializable {
+public class Sale implements Serializable, Identifier {
 
     // Sale attributes
     private int saleID;
+    private final String type = "Sale";
     private String date;
     private double soldPrice;
     private Land property;
@@ -35,7 +36,8 @@ public class Sale implements Serializable {
     }
 
     // Getters
-    public int getSaleID() {return saleID;}
+    public int getId() {return saleID;}
+    public String getType() {return this.type;}
     public String getDate() {return date;}
     public double getSoldPrice() {return soldPrice;}
     public Land getProperty() {return property;}

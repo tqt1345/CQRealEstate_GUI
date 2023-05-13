@@ -11,6 +11,7 @@ package com.mycompany.cqrealestate_gui;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataHandler {
     // Object array lists
@@ -56,6 +57,20 @@ public class DataHandler {
         } catch (Exception e) {
             Utils.Text.showError("Error loading data\n" + e.getMessage());
         }
+    }
+
+    // Gets an object from an array. Anything that calls this must cast to appropriate object type
+    public static Object getObject (int id, List<? extends Identifier> objects) {
+        try {
+            for (Identifier object : objects) {
+                if (object.getId() == id) {
+                    return object;
+                }
+            }
+        }catch (Exception e) {
+            Utils.Text.showError("Error getting object\n" + e.getMessage());
+        }
+        return null;
     }
 
     // Clears all data

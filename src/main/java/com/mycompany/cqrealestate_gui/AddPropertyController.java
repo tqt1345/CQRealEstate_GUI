@@ -51,9 +51,8 @@ public class AddPropertyController implements Initializable {
                 DataHandler.landList.add(makeLand());
                 Utils.Text.showConfirmation("Land added successfully");
                 clearFields();
-
             } else {
-                showError();
+                Utils.Text.showError(errorMessage.toString());
                 clearError();
             }
         } catch (Exception e) {
@@ -69,7 +68,7 @@ public class AddPropertyController implements Initializable {
                 Utils.Text.showConfirmation("House and land added successfully");
                 clearFields();
             } else {
-                showError();
+                Utils.Text.showError(errorMessage.toString());
                 clearError();
             }
         } catch (Exception e) {
@@ -79,7 +78,8 @@ public class AddPropertyController implements Initializable {
 
     private boolean validLandInput() {
         boolean isValid = true;
-        if (!isNotEmpty(LAND_FIELDS)) {
+        if (!Utils.Validator.isNotEmpty(LAND_FIELDS)) {
+            errorMessage.append("All fields must be filled\n");
             return false;
         }
 
@@ -87,21 +87,44 @@ public class AddPropertyController implements Initializable {
         final String LOT_NUMBER = txtLotNumberLand.getText();
         final String LAND_AREA = txtLandAreaLand.getText();
 
-        if (!isValidId(ID, DataHandler.landList)) {
+        if (!Utils.Validator.isInteger(ID)) {
+            errorMessage.append("ID must be an integer\n");
             isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(ID, 0)) {
+                errorMessage.append("ID must be greater than 0\n");
+                isValid = false;
+            }
+            if (!Utils.Validator.idExists(ID, DataHandler.landList)) {
+                errorMessage.append("ID already exists\n");
+                isValid = false;
+            }
         }
-        if (!isValidLotNumber(LOT_NUMBER)) {
+        if (!Utils.Validator.isInteger(LOT_NUMBER)) {
+            errorMessage.append("Lot number must be an integer\n");
             isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(LOT_NUMBER, 0)) {
+                errorMessage.append("Lot number must be greater than 0\n");
+                isValid = false;
+            }
         }
-        if (!isValidLandArea(LAND_AREA)) {
+        if (!Utils.Validator.isDouble(LAND_AREA)) {
+            errorMessage.append("Land area must be a number\n");
             isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(LAND_AREA, 0)) {
+                errorMessage.append("Land area must be greater than 0\n");
+                isValid = false;
+            }
         }
         return isValid;
     }
 
     private boolean validHouseInput () {
         boolean isValid = true;
-        if (!isNotEmpty(HOUSE_AND_LAND_FIELDS)) {
+        if (!Utils.Validator.isNotEmpty(HOUSE_AND_LAND_FIELDS)) {
+            errorMessage.append("All fields must be filled\n");
             return false;
         }
         final String ID = txtHouseAndLandId.getText();
@@ -111,26 +134,65 @@ public class AddPropertyController implements Initializable {
         final String BEDROOMS = txtBedroomsHouse.getText();
         final String TOILETS = txtToiletsHouse.getText();
 
-        if (!isValidId(ID, DataHandler.houseAndLandList)) {
+        if (!Utils.Validator.isInteger(ID)) {
+            errorMessage.append("ID must be an integer\n");
+            isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(ID, 0)) {
+                errorMessage.append("ID must be greater than 0\n");
+                isValid = false;
+            }
+            if (!Utils.Validator.idExists(ID, DataHandler.houseAndLandList)) {
+                errorMessage.append("ID already exists\n");
+                isValid = false;
+            }
+        }
+        if (!Utils.Validator.isInteger(LOT_NUMBER)) {
+            errorMessage.append("Lot number must be an integer\n");
+            isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(LOT_NUMBER, 0)) {
+                errorMessage.append("Lot number must be greater than 0\n");
+                isValid = false;
+            }
+        }
+        if (!Utils.Validator.isDouble(LAND_AREA)) {
+            errorMessage.append("Land area must be a number\n");
+            isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(LAND_AREA, 0)) {
+                errorMessage.append("Land area must be greater than 0\n");
+                isValid = false;
+            }
+        }
+        if (!Utils.Validator.isDouble(CONSTRUCTED_AREA)) {
+            errorMessage.append("Constructed area must be a number\n");
+            isValid = false;
+        } else {
+            if (!Utils.Validator.isGreaterThan(CONSTRUCTED_AREA, 0)) {
+                errorMessage.append("Constructed area must be greater than 0\n");
+                isValid = false;
+            } else {
+                if (Double.parseDouble(CONSTRUCTED_AREA) >= Double.parseDouble(LAND_AREA)) {
+                    errorMessage.append("Constructed area must be less than land area\n");
+                    isValid = false;
+                }
+            }
+        }
+        if (!Utils.Validator.isInteger(BEDROOMS)) {
+            errorMessage.append("Bedrooms must be an integer\n");
             isValid = false;
         }
-        if (!isValidLotNumber(LOT_NUMBER)) {
-            isValid = false;
-        }
-        if (!isValidLandArea(LAND_AREA)) {
-            isValid = false;
-        }
-        if (!isValidConstructedArea(LAND_AREA, CONSTRUCTED_AREA)) {
-            isValid = false;
-        }
-        if (!isValidBedrooms(BEDROOMS)) {
-            isValid = false;
-        }
-        if (!isValidToilets(TOILETS)) {
+        if (!Utils.Validator.isInteger(TOILETS)) {
+            errorMessage.append("Toilets must be an integer\n");
             isValid = false;
         }
         return isValid;
     }
+
+
+    /*
+
     private boolean isNotEmpty (TextField [] fields) {
         for (TextField field : fields) {
             final String INPUT_FIELD = field.getText();
@@ -156,7 +218,7 @@ public class AddPropertyController implements Initializable {
         }
 
         for (Land property : properties) {
-            final int ID_IN_LIST = property.getPropertyId();
+            final int ID_IN_LIST = property.getId();
             if (ID_INT == ID_IN_LIST) {
                 errorMessage.append("ID already exists\n");
                 return false;
@@ -164,7 +226,6 @@ public class AddPropertyController implements Initializable {
         }
         return true;
     }
-
     private boolean isValidLotNumber(String lotNumber) {
         if (!Utils.Validator.isInteger(lotNumber)) {
             errorMessage.append("Lot number must be an integer\n");
@@ -230,6 +291,8 @@ public class AddPropertyController implements Initializable {
         }
         return true;
     }
+
+     */
     // Makes land objects
     private Land makeLand() {
         final int ID = Integer.parseInt(txtLandId.getText());
@@ -255,21 +318,10 @@ public class AddPropertyController implements Initializable {
 
     // Clears all text fields
     private void clearFields() {
-        clearLandFields();
-        clearHouseFields();
+        Utils.Text.clearFields(LAND_FIELDS);
+        Utils.Text.clearFields(HOUSE_AND_LAND_FIELDS);
     }
 
-    private void clearLandFields() {
-        for (TextField field : LAND_FIELDS) {
-            field.clear();
-        }
-    }
-
-    private void clearHouseFields() {
-        for (TextField field : HOUSE_AND_LAND_FIELDS) {
-            field.clear();
-        }
-    }
     // Switches to the main menu
     @FXML private void switchToMainMenu() throws Exception {
         try {

@@ -11,7 +11,7 @@ package com.mycompany.cqrealestate_gui;
 
 import java.io.Serializable;
 
-public abstract class Client implements Serializable {
+public abstract class Client implements Serializable, Identifier {
 
     // Client attributes
     private int clientID;
@@ -37,7 +37,8 @@ public abstract class Client implements Serializable {
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
     // Getters
-    public int getClientID() {return clientID;}
+    public int getId() {return clientID;}
+    public String getType() {String type = "Client";return type;}
     public String getFirstName() {return firstName;}
     public String getLastName() {return lastName;}
     public String getAddress() {return address;}

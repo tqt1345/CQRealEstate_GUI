@@ -106,6 +106,11 @@ public class AddSaleController implements Initializable {
         if (!Utils.Validator.isDouble(SOLD_PRICE)) {
             errorMessage.append("Sold price must be a number\n");
             isValid = false;
+        } else {
+            if (Double.parseDouble(SOLD_PRICE) <= 0) {
+                errorMessage.append("Sold price must be greater than 0\n");
+                isValid = false;
+            }
         }
         if (!Utils.Validator.isInteger(PROPERTY_ID)) {
             errorMessage.append("Property ID must be an integer\n");

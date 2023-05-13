@@ -29,11 +29,10 @@
                   <Button mnemonicParsing="false" onAction="#switchToSearchSale" prefWidth="125.0" text="Search Sale" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#handleCalculateAverageButton" prefWidth="125.0" text="Calculate Average" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#handleClearDataButton" prefWidth="125.0" text="Clear Data" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onAction="#handleMakeSampleDataButton" prefWidth="125.0" text="Make sample data" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#switchToAddProperty" prefWidth="125.0" text="Add Property" />
+                  <Button mnemonicParsing="false" onAction="#handleExitButton" prefWidth="125.0" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button layoutX="225.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleExitButton" prefWidth="125.0" text="Exit" />
          </children></AnchorPane>
   </content>
 </TitledPane>

@@ -14,8 +14,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import testing.TestData;
 
 /**
  * FXML Controller class
@@ -109,7 +107,8 @@ public class MainMenuController implements Initializable {
         }
     }
 
-    // Makes sample test data
+    /*
+    FOR TESTING
     @FXML private void handleMakeSampleDataButton() {
         try {
             TestData.makeSampleData();
@@ -119,6 +118,7 @@ public class MainMenuController implements Initializable {
         }
     }
 
+     */
     // Exits program
     @FXML private void handleExitButton() {
         App.exit();

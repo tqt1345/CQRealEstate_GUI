@@ -28,4 +28,6 @@ target
 .idea
 
 # Data
+*.ser
+*.ser
 ObjectData.ser

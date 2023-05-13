@@ -31,8 +31,7 @@ public class SearchSaleController implements Initializable {
         fields = new TextField[]{txtSaleId};
     }
 
-    TextField[] fields;
-
+    TextField[] fields;             // Array of text fields
     @FXML TextArea txtSaleRecords; // Text area for showing sale info
     @FXML TextField txtSaleId;     // text field for entering sale id
 
@@ -78,38 +77,6 @@ public class SearchSaleController implements Initializable {
         final String SALE_INFO = DataHandler.getObject(Integer.parseInt(id), DataHandler.saleList).toString();
         txtSaleRecords.setText(SALE_INFO);
     }
-    /*
-    private boolean isValidInputOld () {
-        try {
-            StringBuilder errorMessage = new StringBuilder();
-            if (txtSaleId.getText().isEmpty()) {
-                errorMessage.append("Sale ID cannot be empty\n");
-            }
-            if (!Utils.Validator.isInteger(txtSaleId.getText())) {
-                errorMessage.append("Sale ID must be an integer\n");
-            } else {
-                boolean saleExist = false;
-                for (Sale sale : DataHandler.saleList) {
-                    if (sale.getId() == Integer.parseInt(txtSaleId.getText())) {
-                        saleExist = true;
-                    }
-                }
-                if (!saleExist) {
-                    errorMessage.append("Sale ID does not exist\n");
-                }
-            }
-
-            if (!errorMessage.toString().isEmpty()) {
-                Utils.Text.showError(errorMessage.toString());
-                return false;
-            }
-        }catch (Exception e) {
-            Utils.Text.showError("Error while validating input\n" + e.getMessage());
-        }
-        return true;
-    }
-     */
-
 
     // Switches to main menu
     public void switchToMainMenu() throws Exception {

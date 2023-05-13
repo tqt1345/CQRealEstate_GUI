@@ -11,9 +11,7 @@ package com.mycompany.cqrealestate_gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -76,6 +74,7 @@ public class AddPropertyController implements Initializable {
         }
     }
 
+    // Checks if input for land is valid
     private boolean validLandInput() {
         boolean isValid = true;
         if (!Utils.Validator.isNotEmpty(LAND_FIELDS)) {
@@ -121,6 +120,7 @@ public class AddPropertyController implements Initializable {
         return isValid;
     }
 
+    // Checks if input for houseAndLand is valid
     private boolean validHouseInput () {
         boolean isValid = true;
         if (!Utils.Validator.isNotEmpty(HOUSE_AND_LAND_FIELDS)) {
@@ -190,109 +190,6 @@ public class AddPropertyController implements Initializable {
         return isValid;
     }
 
-
-    /*
-
-    private boolean isNotEmpty (TextField [] fields) {
-        for (TextField field : fields) {
-            final String INPUT_FIELD = field.getText();
-            if (INPUT_FIELD.isEmpty()) {
-                errorMessage.append("All fields must be filled\n");
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean isValidId(String id, List<? extends Land> properties) {
-
-        if (!Utils.Validator.isInteger(id)) {
-            errorMessage.append("ID must be an integer\n");
-            return false;
-        }
-        final int ID_INT = Integer.parseInt(id);
-
-        if (ID_INT <= 0) {
-            errorMessage.append("ID must be greater than 0\n");
-            return false;
-        }
-
-        for (Land property : properties) {
-            final int ID_IN_LIST = property.getId();
-            if (ID_INT == ID_IN_LIST) {
-                errorMessage.append("ID already exists\n");
-                return false;
-            }
-        }
-        return true;
-    }
-    private boolean isValidLotNumber(String lotNumber) {
-        if (!Utils.Validator.isInteger(lotNumber)) {
-            errorMessage.append("Lot number must be an integer\n");
-            return false;
-        }
-        if (Integer.parseInt(lotNumber) <= 0) {
-            errorMessage.append("Lot number must be greater than 0\n");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isValidLandArea(String landArea) {
-        if (!Utils.Validator.isDouble(landArea)) {
-            errorMessage.append("Land area must be a double\n");
-            return false;
-        }
-        if (Double.parseDouble(landArea) <= 0) {
-            errorMessage.append("Land area must be greater than 0\n");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isValidConstructedArea(String landArea, String constructedArea) {
-        if (!Utils.Validator.isDouble(constructedArea)) {
-            errorMessage.append("Constructed area must be a double\n");
-            return false;
-        }
-        final double CONSTRUCTED_AREA_DOUBLE = Double.parseDouble(constructedArea);
-        if (CONSTRUCTED_AREA_DOUBLE <= 0) {
-            errorMessage.append("Constructed area must be greater than 0\n");
-            return false;
-        }
-        final int LAND_AREA = Integer.parseInt(landArea);
-        if (CONSTRUCTED_AREA_DOUBLE >= LAND_AREA) {
-            errorMessage.append("Constructed area must be less than land area\n");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isValidBedrooms(String bedrooms) {
-        if (!Utils.Validator.isInteger(bedrooms)) {
-            errorMessage.append("Bedrooms must be an integer\n");
-            return false;
-        }
-        if (Integer.parseInt(bedrooms) <= 0) {
-            errorMessage.append("Bedrooms must be greater than 0\n");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean isValidToilets(String toilets) {
-        if (!Utils.Validator.isInteger(toilets)) {
-            errorMessage.append("Toilets must be an integer\n");
-            return false;
-        }
-        if (Integer.parseInt(toilets) <= 0) {
-            errorMessage.append("Toilets must be greater than 0\n");
-            return false;
-        }
-        return true;
-    }
-
-     */
     // Makes land objects
     private Land makeLand() {
         final int ID = Integer.parseInt(txtLandId.getText());
@@ -329,10 +226,6 @@ public class AddPropertyController implements Initializable {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private void showError() {
-        Utils.Text.showError(errorMessage.toString());
     }
 
     private void clearError() {

@@ -12,8 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 /**
@@ -49,9 +48,9 @@ public class AddClientController implements Initializable {
             if (isValidInput(BUYER_FIELDS)) {
                 DataHandler.buyerList.add(makeBuyer());
                 Utils.Text.showConfirmation("Buyer added successfully");
-                clearFields();
+                Utils.Text.clearFields(BUYER_FIELDS);
             }else {
-                showError();
+                Utils.Text.showError(errorMessage.toString());
                 clearError();
             }
         } catch (Exception e) {
@@ -65,9 +64,9 @@ public class AddClientController implements Initializable {
             if (isValidInput(SELLER_FIELDS)) {
                 DataHandler.sellerList.add(makeSeller());
                 Utils.Text.showConfirmation("Seller added successfully");
-                clearFields();
+                Utils.Text.clearFields(SELLER_FIELDS);
             } else {
-                showError();
+                Utils.Text.showError(errorMessage.toString());
                 clearError();
             }
         } catch (Exception e) {
@@ -100,7 +99,6 @@ public class AddClientController implements Initializable {
                 isValid = false;
             }
         }
-
         if (!Utils.Validator.isName(FIRST_NAME)) {
             errorMessage.append("First name must be letters only\n");
             isValid = false;
@@ -116,9 +114,6 @@ public class AddClientController implements Initializable {
 
         return isValid;
     }
-
-
-
 
     // Creates a new buyer object
     private Buyer makeBuyer() {
@@ -174,86 +169,3 @@ public class AddClientController implements Initializable {
 
 }
 
-/*
-private boolean validBuyerInput() {
-        boolean isValid = true;
-        if (!Utils.Validator.isNotEmpty(BUYER_FIELDS)) {
-            errorMessage.append("All fields must be filled\n");
-            return false;
-        }
-
-        final String ID = txtBuyerID.getText();
-        final String FIRST_NAME = txtBuyerFirstName.getText();
-        final String LAST_NAME = txtBuyerLastName.getText();
-        final String PHONE = txtBuyerPhoneNumber.getText();
-
-        if (!Utils.Validator.isInteger(ID)) {
-            errorMessage.append("ID must be an integer\n");
-            isValid = false;
-        } else {
-            if (!Utils.Validator.isGreaterThan(ID,0)) {
-                errorMessage.append("ID must be greater than 0\n");
-                isValid = false;
-            }
-            if (!Utils.Validator.idExists(ID, DataHandler.buyerList)) {
-                errorMessage.append("ID already exists\n");
-                isValid = false;
-            }
-        }
-
-        if (!Utils.Validator.isName(FIRST_NAME)) {
-            errorMessage.append("First name must be letters only\n");
-            isValid = false;
-        }
-        if (!Utils.Validator.isName(LAST_NAME)) {
-            errorMessage.append("Last name must be letters only\n");
-            isValid = false;
-        }
-        if (!Utils.Validator.isPhoneNumber(PHONE)) {
-            errorMessage.append("Phone number must be an 8 digit number\n");
-            isValid = false;
-        }
-        return isValid;
-    }
-
-    private boolean validSellerInput() {
-        boolean isValid = true;
-        if (!Utils.Validator.isNotEmpty(SELLER_FIELDS)) {
-            errorMessage.append("All fields must be filled\n");
-            return false;
-        }
-
-        final String ID = txtSellerID.getText();
-        final String FIRST_NAME = txtSellerFirstName.getText();
-        final String LAST_NAME = txtSellerLastName.getText();
-        final String PHONE = txtSellerPhoneNumber.getText();
-
-        if (!Utils.Validator.isInteger(ID)) {
-            errorMessage.append("ID must be an integer\n");
-            isValid = false;
-        } else {
-            if (!Utils.Validator.isGreaterThan(ID,0)) {
-                errorMessage.append("ID must be greater than 0\n");
-                isValid = false;
-            }
-            if (!Utils.Validator.idExists(ID, DataHandler.sellerList)) {
-                errorMessage.append("ID already exists\n");
-                isValid = false;
-            }
-        }
-
-        if (!Utils.Validator.isName(FIRST_NAME)) {
-            errorMessage.append("First name must be letters only\n");
-            isValid = false;
-        }
-        if (!Utils.Validator.isName(LAST_NAME)) {
-            errorMessage.append("Last name must be letters only\n");
-            isValid = false;
-        }
-        if (!Utils.Validator.isPhoneNumber(PHONE)) {
-            errorMessage.append("Phone number must be an 8 digit number\n");
-            isValid = false;
-        }
-        return isValid;
-    }
- */

@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import java.net.URL;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -45,7 +46,7 @@ public class AddClientController implements Initializable {
     // Handles submit button for buyer objects
     @FXML private void handleSubmitBuyerButton () {
         try {
-            if (isValidInput(BUYER_FIELDS)) {
+            if (isValidInput(BUYER_FIELDS, DataHandler.buyerList)) {
                 DataHandler.buyerList.add(makeBuyer());
                 Utils.Text.showConfirmation("Buyer added successfully");
                 Utils.Text.clearFields(BUYER_FIELDS);
@@ -61,7 +62,7 @@ public class AddClientController implements Initializable {
     // Handles submit button for seller objects
     @FXML private void handleSubmitSellerButton () {
         try {
-            if (isValidInput(SELLER_FIELDS)) {
+            if (isValidInput(SELLER_FIELDS,DataHandler.sellerList)) {
                 DataHandler.sellerList.add(makeSeller());
                 Utils.Text.showConfirmation("Seller added successfully");
                 Utils.Text.clearFields(SELLER_FIELDS);
@@ -74,7 +75,7 @@ public class AddClientController implements Initializable {
         }
     }
 
-    private boolean isValidInput(TextField[] fields) {
+    private boolean isValidInput(TextField[] fields, List <? extends Client> clients) {
         boolean isValid = true;
         if (!Utils.Validator.isNotEmpty(fields)) {
             errorMessage.append("All fields must be filled\n");
@@ -94,7 +95,7 @@ public class AddClientController implements Initializable {
                 errorMessage.append("ID must be greater than 0\n");
                 isValid = false;
             }
-            if (!Utils.Validator.idExists(ID, DataHandler.buyerList)) {
+            if (!Utils.Validator.idExists(ID, clients)) {
                 errorMessage.append("ID already exists\n");
                 isValid = false;
             }

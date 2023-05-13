@@ -25,7 +25,7 @@ public class DataHandler {
     // Saves all object arrays into a file via serialization
     public static void saveData() {
         try {
-            FileOutputStream file = new FileOutputStream("ObjectData.ser");
+            FileOutputStream file = new FileOutputStream("./ObjectData.ser");
             ObjectOutputStream output = new ObjectOutputStream(file);
 
             output.writeObject(landList);
@@ -43,7 +43,7 @@ public class DataHandler {
     // Loads all object arrays from a file via deserialization
     public static void loadData() {
         try {
-            FileInputStream file = new FileInputStream("ObjectData.ser");
+            FileInputStream file = new FileInputStream("./ObjectData.ser");
             ObjectInputStream input = new ObjectInputStream(file);
 
             landList = (ArrayList<Land>) input.readObject();

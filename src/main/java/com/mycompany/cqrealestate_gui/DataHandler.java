@@ -28,6 +28,7 @@ public class DataHandler {
             FileOutputStream file = new FileOutputStream("./ObjectData.ser");
             ObjectOutputStream output = new ObjectOutputStream(file);
 
+            // Write arrays to file
             output.writeObject(landList);
             output.writeObject(houseAndLandList);
             output.writeObject(buyerList);
@@ -46,6 +47,7 @@ public class DataHandler {
             FileInputStream file = new FileInputStream("./ObjectData.ser");
             ObjectInputStream input = new ObjectInputStream(file);
 
+            // Load arrays from file
             landList = (ArrayList<Land>) input.readObject();
             houseAndLandList = (ArrayList<HouseAndLand>) input.readObject();
             buyerList = (ArrayList<Buyer>) input.readObject();
@@ -55,7 +57,9 @@ public class DataHandler {
             file.close();
             input.close();
         } catch (Exception e) {
-            Utils.Text.showError("Error loading data\n" + e.getMessage());
+            // Creates a new data file if one doesn't exist
+            Utils.Text.showConfirmation("No data file, creating new file.\n");
+            saveData();
         }
     }
 

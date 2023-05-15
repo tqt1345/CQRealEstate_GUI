@@ -28,18 +28,18 @@ public class AddClientController implements Initializable {
     private TextField[] SELLER_FIELDS;
 
     // Text Fields for Buyer objects
-    @FXML private TextField txtBuyerID;             // POS 1 in BUYER_FIELDS
-    @FXML private TextField txtBuyerFirstName;      // POS 2 in BUYER_FIELDS
-    @FXML private TextField txtBuyerLastName;       // POS 3 in BUYER_FIELDS
-    @FXML private TextField txtBuyerAddress;        // POS 4 in BUYER_FIELDS
-    @FXML private TextField txtBuyerPhoneNumber;    // POS 5 in BUYER_FIELDS
+    @FXML private TextField txtBuyerID;             // POSITION 0 in BUYER_FIELDS
+    @FXML private TextField txtBuyerFirstName;      // POSITION 1 in BUYER_FIELDS
+    @FXML private TextField txtBuyerLastName;       // POSITION 2 in BUYER_FIELDS
+    @FXML private TextField txtBuyerAddress;        // POSITION 3 in BUYER_FIELDS
+    @FXML private TextField txtBuyerPhoneNumber;    // POSITION 4 in BUYER_FIELDS
 
     // Text Fields for Seller objects
-    @FXML private TextField txtSellerID;            // POS 1 in SELLER_FIELDS
-    @FXML private TextField txtSellerFirstName;     // POS 2 in SELLER_FIELDS
-    @FXML private TextField txtSellerLastName;      // POS 3 in SELLER_FIELDS
-    @FXML private TextField txtSellerAddress;       // POS 4 in SELLER_FIELDS
-    @FXML private TextField txtSellerPhoneNumber;   // POS 5 in SELLER_FIELDS
+    @FXML private TextField txtSellerID;            // POSITION 0 in SELLER_FIELDS
+    @FXML private TextField txtSellerFirstName;     // POSITION 1 in SELLER_FIELDS
+    @FXML private TextField txtSellerLastName;      // POSITION 2 in SELLER_FIELDS
+    @FXML private TextField txtSellerAddress;       // POSITION 3 in SELLER_FIELDS
+    @FXML private TextField txtSellerPhoneNumber;   // POSITION 4 in SELLER_FIELDS
 
     StringBuilder errorMessage; // Holds any error messages
 

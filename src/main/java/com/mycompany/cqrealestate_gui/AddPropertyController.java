@@ -26,19 +26,19 @@ public class AddPropertyController implements Initializable {
     private TextField[] HOUSE_AND_LAND_FIELDS;
 
     // Text Fields for Land objects
-    @FXML private TextField txtLandId;
-    @FXML private TextField txtLotNumberLand ;
-    @FXML private TextField txtAddressLand;
-    @FXML private TextField txtLandAreaLand;
+    @FXML private TextField txtLandId;                  // POSITION 0 in LAND_FIELDS
+    @FXML private TextField txtLotNumberLand ;          // POSITION 1 in LAND_FIELDS
+    @FXML private TextField txtAddressLand;             // POSITION 2 in LAND_FIELDS
+    @FXML private TextField txtLandAreaLand;            // POSITION 3 in LAND_FIELDS
 
     // Text fields for HouseAndLand objects
-    @FXML private TextField txtHouseAndLandId;
-    @FXML private TextField txtLotNumberHouse;
-    @FXML private TextField txtAddressHouse;
-    @FXML private TextField txtLandAreaHouse;
-    @FXML private TextField txtConstructedAreaHouse;
-    @FXML private TextField txtBedroomsHouse;
-    @FXML private TextField txtToiletsHouse;
+    @FXML private TextField txtHouseAndLandId;          // POSITION 0 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtLotNumberHouse;          // POSITION 1 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtAddressHouse;            // POSITION 2 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtLandAreaHouse;           // POSITION 3 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtConstructedAreaHouse;    // POSITION 4 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtBedroomsHouse;           // POSITION 5 in HOUSE_AND_LAND_FIELDS
+    @FXML private TextField txtToiletsHouse;            // POSITION 6 in HOUSE_AND_LAND_FIELDS
 
     StringBuilder errorMessage;
 

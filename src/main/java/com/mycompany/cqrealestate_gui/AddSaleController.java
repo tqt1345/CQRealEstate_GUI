@@ -26,20 +26,20 @@ public class AddSaleController implements Initializable {
     private TextField[] HOUSE_SALE_FIELDS;
 
     // Text Fields for Land Sale objects
-    @FXML private TextField txtLandSaleId;              // POS 1 in LAND_SALE_FIELDS
-    @FXML private TextField txtLandDate;                // POS 2 in LAND_SALE_FIELDS
-    @FXML private TextField txtLandSolePrice;           // POS 3 in LAND_SALE_FIELDS
-    @FXML private TextField txtLandId;                  // POS 4 in LAND_SALE_FIELDS
-    @FXML private TextField txtLandBuyerId;             // POS 5 in LAND_SALE_FIELDS
-    @FXML private TextField txtLandSellerId;            // POS 6 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandSaleId;              // POSITION 0 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandDate;                // POSITION 1 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandSolePrice;           // POSITION 2 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandId;                  // POSITION 3 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandBuyerId;             // POSITION 4 in LAND_SALE_FIELDS
+    @FXML private TextField txtLandSellerId;            // POSITION 5 in LAND_SALE_FIELDS
 
     // Text Fields for HouseAndLandSale Sale objects
-    @FXML private TextField txtHouseSaleId;             // POS 1 in HOUSE_SALE_FIELDS
-    @FXML private TextField txtHouseDate;               // POS 2 in HOUSE_SALE_FIELDS
-    @FXML private TextField txtHouseSoldPrice;          // POS 3 in HOUSE_SALE_FIELDS
-    @FXML private TextField txtHouseId;                 // POS 4 in HOUSE_SALE_FIELDS
-    @FXML private TextField txtHouseBuyerId;            // POS 5 in HOUSE_SALE_FIELDS
-    @FXML private TextField txtHouseSellerId;           // POS 6 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseSaleId;             // POSITION 0 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseDate;               // POSITION 1 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseSoldPrice;          // POSITION 2 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseId;                 // POSITION 3 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseBuyerId;            // POSITION 4 in HOUSE_SALE_FIELDS
+    @FXML private TextField txtHouseSellerId;           // POSITION 5 in HOUSE_SALE_FIELDS
 
     StringBuilder errorMessage; // Holds any error messages
 
